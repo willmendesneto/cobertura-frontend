@@ -1,0 +1,15 @@
+# Site settings
+title:
+description: > # this means to ignore newlines until "baseurl:"
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "" # the base hostname & protocol for your site
+
+# Build settings
+markdown: kramdown
+highlighter: pygments
+permalink: /:title/
+
+# exclude my node related stuff
+exclude: ['package.json', 'src', 'node_modules', 'gulpfile.js']
+
+collections:
