@@ -1,6 +1,6 @@
 var gulp        = require('gulp'),
 	plumber     = require('gulp-plumber'),
-	browserSync = require('browser-sync'),
+	browserSync = require('browser-sync').create(),
 	uglify      = require('gulp-uglify'),
 	concat      = require('gulp-concat'),
 	imagemin    = require('gulp-imagemin'),
@@ -34,10 +34,11 @@ gulp.task('jekyll-rebuild', ['jekyll-build'], function () {
  * Wait for jekyll-build, then launch the Server
  */
 gulp.task('browser-sync', ['jekyll-build'], function() {
-	browserSync({
+	browserSync.init({
 		server: {
 			baseDir: '_site'
-		}
+		},
+    port: 4000
 	});
 });
 

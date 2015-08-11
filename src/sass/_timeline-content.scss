@@ -1,5 +1,12 @@
 .timeline-content{
 
+  h2.estado {
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 0.8em;
+    color: $red-bdf;
+  }
+
   &.text {
     p::first-letter{
       font-size: 200%;
