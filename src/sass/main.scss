@@ -1,0 +1,17 @@
+@import 'timeline';
+@import url(http://fonts.googleapis.com/css?family=Exo:400,500,700,200italic);
+
+html * {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+  font-family: 'Exo', sans-serif;
+}
+
+footer {
+  margin-top: 0;
+}
+
+body {
+  margin: 0;
+}
+

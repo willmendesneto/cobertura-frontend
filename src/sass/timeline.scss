@@ -1,25 +1,12 @@
 @import "_mixins";
 @import "_variables";
 @import "_query";
-@import "_timeline-content";
 @import "bourbon";
-
-
-html * {
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-footer {
-  margin-top: 0;
-}
-
-body {
-  margin: 0;
-}
+@import "_timeline-content";
+@import "_timeline-aside";
 
 .container {
-	background-color: rgba(0,0,0,0.1);
+	background-color: #e9f0f5;
   padding-bottom: 0;
 	margin: 0 auto;
 
@@ -35,10 +22,12 @@ body {
 }
 
 #timeline {
+  width: 50%;
+  float: left;
 	position: relative;
 	padding: 2em 1em;
 	margin: {
-		top: 2em;
+		top: 0;
     bottom: 0;
 	}
 
@@ -46,21 +35,10 @@ body {
 		content: '';
 		position: absolute;
 		top: 0;
-		left: 18px;
+		left: 35px;
 		height: 100%;
 		width: 4px;
 		background: darken($background, 15%);
-	}
-
-	@include media-query(L) {
-		margin: {
-			top: 0;
-		}
-
-		&::before {
-			left: 50%;
-			margin-left: -2px;
-		}
 	}
 }
 
@@ -76,18 +54,6 @@ body {
 
 	&:last-child {
 		margin-bottom: 0;
-	}
-
-	@include media-query(L) {
-		margin: 4em 0;
-
-		&:first-child {
-			margin-top: 0;
-		}
-
-		&:last-child {
-			margin-bottom: 0;
-		}
 	}
 }
 
@@ -109,26 +75,6 @@ body {
 		display: block;
 		width: 90%;
 		height: auto;
-	}
-
-	@include media-query(L) {
-		width: 50px;
-		height: 50px;
-		left: 50%;
-		margin-left: -25px;
-
-		/* Force Hardware Acceleration in WebKit */
-		-webkit-transform: translateZ(0);
-		-webkit-backface-visibility: hidden;
-
-		&.is-hidden {
-			visibility: hidden;
-		}
-
-		&.bounce-in {
-			visibility: visible;
-			@include animation(bounce-1 .6s);
-		}
 	}
 }
 
@@ -231,56 +177,6 @@ body {
 	}
 
 	@include media-query(L) {
-		margin-left: 0;
-		padding: 1.6em;
-		width: 47%;
-
-		&::before {
-			top: 20px;
-			left: 100%;
-			border-color: transparent;
-			border-left-color: $color-3;
-		}
-
-		.read-more {
-			float: left;
-		}
-
-		.aside {
-      text-align: left;
-			position: absolute;
-			width: 100%;
-			left: 110%;
-			top: 10px;
-      margin: 0 20px;
-      color: white;
-      font-weight: bold;
-      text-shadow: 2px 1px 1px rgba(0,0,0,0.7);
-      font-size: 1.8em;
-		}
-
-		.timeline-block:nth-child(even) & {
-			float: right;
-
-			&::before {
-				top: 20px;
-				left: auto;
-				right: 100%;
-				border-color: transparent;
-				border-right-color: $color-3;
-			}
-
-			.read-more {
-				float: right;
-			}
-
-			.aside {
-				left: auto;
-				right: 110%;
-				text-align: right;
-			}
-		}
-
 		&.is-hidden {
 			visibility: hidden;
 		}
