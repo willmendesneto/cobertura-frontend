@@ -1,6 +1,6 @@
 var gulp         = require('gulp'),
     plumber     = require('gulp-plumber'),
-    browserSync = require('browser-sync'),
+    browserSync = require('browser-sync').create(),
     uglify      = require('gulp-uglify'),
     concat      = require('gulp-concat'),
     imagemin    = require('gulp-imagemin'),
