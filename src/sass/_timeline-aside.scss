@@ -11,6 +11,12 @@ aside {
   -moz-box-shadow: 0px 0px 19px 6px rgba(0,0,0,0.42);
   box-shadow: 0px 0px 19px 6px rgba(0,0,0,0.42);
   color: #555;
+  display: table;
+
+
+  .scroll {
+    min-height: 80%;
+  }
 
   section {
     padding: 0 1em;
@@ -21,18 +27,28 @@ aside {
   }
 
   footer {
+    display: table-row;
     background-color: #891A1C;
     text-align: center;
     color: white;
-    position: absolute;
-    bottom: 0;
     width: 100%;
+    padding: 20px 0;
 
     a {
       color: white;
 
       &:focus {
         color: white;
+      }
+    }
+
+    p {
+      margin: 0;
+      margin-top: 15px;
+
+      & + p {
+        margin-top: 5px;
+
       }
     }
   }
