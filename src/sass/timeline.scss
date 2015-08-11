@@ -6,7 +6,7 @@
 @import "_timeline-aside";
 
 .container {
-	background-color: #e9f0f5;
+  background: linear-gradient(#fff, #ccc);
   padding-bottom: 0;
 	margin: 0 auto;
 
@@ -35,10 +35,10 @@
 		content: '';
 		position: absolute;
 		top: 0;
-		left: 35px;
+		left: 75px;
 		height: 100%;
 		width: 4px;
-		background: darken($background, 15%);
+		background: $red-bdf;
 	}
 }
 
@@ -60,8 +60,9 @@
 .timeline-img {
 	position: absolute;
   background: white;
+  color: darken($red-bdf, 10%);
 	top: 0;
-	left: 0;
+	left: 40px;
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
@@ -69,7 +70,7 @@
   justify-content:center;
   align-items:center;
   margin: 0;
-	box-shadow: 0 0 0 4px $color-3, inset 0 2px 0 rgba(#000, .08), 0 3px 0 4px rgba(#000, .05) ;
+	box-shadow: 0 0 0 4px #ffffff, inset 0 3px 0 rgba(0, 0, 0, 0.08), 0 4px 10px 4px rgba(0, 0, 0, 0.5);
 
 	img {
 		display: block;
@@ -94,15 +95,26 @@
 	}
 }
 
+.data-hora {
+  position: absolute;
+  top: 40px;
+  z-index: 999;
+  margin-top: 5px;
+
+  .hora {
+    display: block;
+  }
+}
+
 .timeline-content {
 	position: relative;
   box-sizing: border-box;
-	margin-left: 60px;
+	margin-left: 100px;
 	background: $color-3;
 	@include border-radius;
 	padding: 1em;
 	@include clearfix;
-	box-shadow: 0 3px 0 darken($background, 5%);
+  box-shadow: 0 0 0 4px #ffffff, inset 0 3px 0 rgba(0, 0, 0, 0.08), 0 4px 10px 4px rgba(0, 0, 0, 0.5);
 
 	h2 {
 		color: $color-1;
