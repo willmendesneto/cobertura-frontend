@@ -21,10 +21,10 @@ var messages = {
  */
 gulp.task('jekyll-build', function (done) {
     browserSync.notify(messages.jekyllBuild);
-   // if (isWindows) 
+    if (isWindows) 
         return cp.exec('jekyll', ['build'], {stdio: 'inherit'}).on('close', done);
-    // else 
-     //   return cp.spawn('jekyll', ['build'], {stdio: 'inherit'}).on('close', done);
+     else 
+        return cp.spawn('jekyll', ['build'], {stdio: 'inherit'}).on('close', done);
 });
 
 /**
