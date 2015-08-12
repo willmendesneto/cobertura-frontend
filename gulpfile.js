@@ -8,7 +8,6 @@ var gulp         = require('gulp'),
     sass        = require('gulp-sass'),
     bourbon     = require('node-bourbon').includePaths,
     cp          = require('child_process'),
-    shell       = require('gulp-shell'),
     os          = require('os'),
     isWindows   = os.type() == 'Windows_NT';
 
@@ -21,10 +20,11 @@ var messages = {
  */
 gulp.task('jekyll-build', function (done) {
     browserSync.notify(messages.jekyllBuild);
-    if (isWindows) 
+    if (isWindows){ 
         return cp.exec('jekyll', ['build'], {stdio: 'inherit'}).on('close', done);
-     else 
+     }else {
         return cp.spawn('jekyll', ['build'], {stdio: 'inherit'}).on('close', done);
+    }
 });
 
 /**
@@ -45,8 +45,6 @@ gulp.task('browser-sync', ['jekyll-build'], function() {
         port: 4000
     });
 });
-
-gulp.task('shell', shell.task(['jekyll serve']));
 
 gulp.task('sass', function () {
   gulp.src('src/sass/main.scss')
@@ -121,4 +119,4 @@ gulp.task('build', ['js', 'json',  'sass']);
  * Default task, running just `gulp` will compile the sass,
  * compile the jekyll site, launch BrowserSync & watch files.
  */
-gulp.task('default', ['js', 'json', 'sass', 'browser-sync', 'watch', 'shell']);
+gulp.task('default', ['js', 'json', 'sass', 'browser-sync', 'watch']);
