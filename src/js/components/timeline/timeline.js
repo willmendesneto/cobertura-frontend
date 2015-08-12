@@ -82,6 +82,20 @@ $(document).ready(function() {
   var TimeLineBlockPhoto = {};
   var TimeLineBlockQuote = {};
 
+  var TimeLineStore = {
+    getBufferInformations: function() {
+      return $.getJSON('http://burburinho.herokuapp.com/api/burburinhos');
+    }
+  };
+
+  TimeLineStore.getBufferInformations().then(function(data) {
+    if (data.length > 0) {
+      $.each(data, function(item, element){
+        TimelineBlocks.render(element, true);
+      });
+    }
+  });
+
   // Exception
   function RenderException(message) {
      this.message = message;
@@ -136,18 +150,17 @@ $(document).ready(function() {
     var date = timestamp.split(' ')[0].split('-', 3);
     date.shift();
     date.reverse();
+    console.log(date[0] + ' ' + getMonthName(date[1]));
     return date[0] + ' ' + getMonthName(date[1]);
   }
 
-  function getFormattedDateHour(timestamp) {
-    var hoursAndMinutes = timestamp.split(' ')[1].split(':', 2).join(':');
-    var newDate = new Date();
-    return newDate.getHours() + ':' + newDate.getMinutes();
+  function getFormattedHourAndMinutes(timestamp) {
+    return timestamp.split(' ')[1].split(':', 2).join(':');
   }
 
   TimeLineBlockQuote.render = function(data) {
     var formattedDate = getFormattedDate(data.timestamp);
-    var formattedDateHour = getFormattedDateHour(data.timestamp);
+    var formattedDateHour = getFormattedHourAndMinutes(data.timestamp);
 
     return '<div class="timeline-block">' +
       '<figure class="timeline-img">' +
@@ -166,7 +179,7 @@ $(document).ready(function() {
 
   TimeLineBlockText.render = function(data) {
     var formattedDate = getFormattedDate(data.timestamp);
-    var formattedDateHour = getFormattedDateHour(data.timestamp);
+    var formattedDateHour = getFormattedHourAndMinutes(data.timestamp);
 
     return '<div class="timeline-block">' +
     '  <figure class="timeline-img">' +
@@ -184,7 +197,7 @@ $(document).ready(function() {
 
   TimeLineBlockVideo.render = function(data) {
     var formattedDate = getFormattedDate(data.timestamp);
-    var formattedDateHour = getFormattedDateHour(data.timestamp);
+    var formattedDateHour = getFormattedHourAndMinutes(data.timestamp);
 
     return '<div class="timeline-block">' +
       '<figure class="timeline-img">' +
@@ -203,7 +216,7 @@ $(document).ready(function() {
 
   TimeLineBlockPhoto.render = function(data) {
     var formattedDate = getFormattedDate(data.timestamp);
-    var formattedDateHour = getFormattedDateHour(data.timestamp);
+    var formattedDateHour = getFormattedHourAndMinutes(data.timestamp);
 
     return '<div class="timeline-block">' +
       '<figure class="timeline-img">' +
@@ -222,7 +235,7 @@ $(document).ready(function() {
 
   TimeLineBlockGallery.render = function(data) {
     var formattedDate = getFormattedDate(data.timestamp);
-    var formattedDateHour = getFormattedDateHour(data.timestamp);
+    var formattedDateHour = getFormattedHourAndMinutes(data.timestamp);
 
     var images = data.content.map(function(item){
       return '<img src="' + item.url + '" alt="' + item.description + '"/>';
