@@ -57,7 +57,7 @@ gulp.task('sass', function () {
  * Javascript Task
  */
 gulp.task('js', function(){
-	return gulp.src('src/js/**/*.js')
+	return gulp.src(['src/js/packages/*.js', 'src/js/components/*.js'])
 		.pipe(plumber())
 		.pipe(concat('main.js'))
 		.pipe(uglify())
