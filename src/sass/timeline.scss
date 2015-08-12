@@ -79,6 +79,40 @@
 	}
 }
 
+.button-new-content{
+  position: fixed;
+  left: 48%;
+  border: none;
+  margin-top: 20px;
+  z-index: 200;
+  color: rgb(230, 230, 230);
+  font-size: 20px;
+  padding: 20px;
+  text-shadow: 0px -1px 0px rgba(30, 30, 30, 0.8);
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  background: rgb(210, 20, 20);
+  background: -moz-linear-gradient(90deg, rgb(210, 20, 20) 30%, rgb(250, 20, 20) 70%);
+  background: -webkit-linear-gradient(90deg, rgb(210, 20, 20) 30%, rgb(250, 20, 20) 70%);
+  background: -o-linear-gradient(90deg, rgb(210, 20, 20) 30%, rgb(250, 20, 20) 70%);
+  background: -ms-linear-gradient(90deg, rgb(210, 20, 20) 30%, rgb(250, 20, 20) 70%);
+  background: linear-gradient(0deg, rgb(210, 20, 20) 30%, rgb(250, 20, 20) 70%);
+  -webkit-box-shadow: 0px 2px 1px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow:    0px 2px 1px rgba(50, 50, 50, 0.75);
+  box-shadow:         0px 2px 1px rgba(50, 50, 50, 0.75);
+  cursor: pointer;
+
+  &:hover {
+    background: -moz-linear-gradient(90deg, rgb(170, 20, 20) 30%, rgb(250, 20, 20) 70%);
+    background: -webkit-linear-gradient(90deg, rgb(170, 20, 20) 30%, rgb(250, 20, 20) 70%);
+    background: -o-linear-gradient(90deg, rgb(170, 20, 20) 30%, rgb(250, 20, 20) 70%);
+    background: -ms-linear-gradient(90deg, rgb(170, 20, 20) 30%, rgb(250, 20, 20) 70%);
+    background: linear-gradient(0deg, rgb(170, 20, 20) 30%, rgb(250, 20, 20) 70%);
+
+  }
+}
+
 @include keyframes(bounce-1) {
 	0% {
 		opacity: 0;
@@ -238,4 +272,3 @@
 		@include transform(translateX(0));
 	}
 }
-
