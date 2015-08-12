@@ -4,29 +4,34 @@ $(document).ready(function() {
     {
       timestamp: '2015-08-11 12:12:12',
       type: 'text',
+      local: 'Minas Gerais',
       content: 'Mais de 250 mil pessoas participaram de protestos em várias cidades de norte a sul do Brasil nesta segunda-feira. A onda de protestos, que nas últimas semanas tinha como foco principal a redução de tarifas do transporte coletivo, ganhou proporções maiores e passou a incluir gritos de descontentamento'
     },
     {
       timestamp: '2015-08-11 12:12:12',
       type: 'video',
+      local: 'Amazonas',
       url: 'https://www.youtube.com/embed/aOYoRbyABaU',
       content: 'Mais de 250 mil pessoas participaram de protestos em várias cidades de norte a sul do Brasil nesta segunda-feira. A onda de protestos, que nas últimas semanas tinha como foco principal a redução de tarifas do transporte coletivo, ganhou proporções maiores e passou a incluir gritos de descontentamento'
     },
     {
       timestamp: '2015-08-11 12:12:12',
       type: 'photo',
+      local: 'Bahia',
       url: 'http://www.pco.org.br/banco_arquivos/conoticias/img/2015/1/4055/48347/48347.jpg',
       content: 'Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis.'
     },
     {
       timestamp: '2015-08-11 12:12:12',
       type: 'quote',
+      local: 'Goiás',
       url: '//avatars0.githubusercontent.com/u/3452187?v=3&s=460',
       content: 'Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis.'
     },
     {
       timestamp: '2015-08-11 12:12:12',
       type: 'gallery',
+      local: 'São Paulo',
       content: [
         {
           url: 'http://farm9.staticflickr.com/8747/16740020286_75906afcea_b.jpg',
@@ -152,6 +157,7 @@ $(document).ready(function() {
       '    <strong class="hora">' + formattedDateHour + '</strong>' +
       '</time>' +
       '<article class="timeline-content quote">' +
+        '<h2 class="estado">' + data.local + '</h2>' +
       '  <img class="perfil" src="' + data.url + '" alt="foto perfil"/>' +
       '  <p>' + data.content + '</p>' +
       '</article>' +
@@ -170,6 +176,7 @@ $(document).ready(function() {
     '    <strong class="hora">' + formattedDateHour + '</strong>' +
     '</time>' +
       '<article class="timeline-content text">' +
+        '<h2 class="estado">' + data.local + '</h2>' +
     '    <p>' + data.content + '</p>' +
     '  </article>' +
     '</div>';
@@ -187,6 +194,7 @@ $(document).ready(function() {
       '    <strong class="hora">' + formattedDateHour + '</strong>' +
       '</time>' +
       '<article class="timeline-content video">' +
+        '<h2 class="estado">' + data.local + '</h2>' +
         '<iframe src="' + data.url + '"></iframe>' +
         '<p>' + data.content + '</p>' +
       '</article>' +
@@ -205,6 +213,7 @@ $(document).ready(function() {
       '    <strong class="hora">' + formattedDateHour + '</strong>' +
       '</time>' +
       '<article class="timeline-content photo">' +
+        '<h2 class="estado">' + data.local + '</h2>' +
         '<img src="' + data.url + '" alt="manifestação"/>' +
         '<p>' + data.content + '</p>' +
       '</article>' +
@@ -227,6 +236,7 @@ $(document).ready(function() {
       '    <strong class="hora">' + formattedDateHour + '</strong>' +
       '</time>' +
       '<article class="timeline-content gallery">' +
+        '<h2 class="estado">' + data.local + '</h2>' +
         '<section class="photos">' +
           images.join('') +
         '</section>' +
@@ -243,6 +253,7 @@ $(document).ready(function() {
 
       if(!!newerContent) {
         $('#timeline').prepend(newElement);
+        $('.button-new-content').fadeIn().removeClass('is-hidden');
       } else {
         $('.timeline-block:last-child').after(newElement);
       }
@@ -295,20 +306,39 @@ $(document).ready(function() {
     $('html, body').animate({
       scrollTop: $('main').offset().top
     }, 800);
+    $(this).fadeOut().addClass('is-hidden');
     return false;
   });
 
+  var COUNTER = 0;
+  var MAX_COUNTER = 3;
+
   //on scolling, show/animate timeline blocks when enter the viewport
   $(window).on('scroll', function(){
-    var containsSomegallery = false;
+    var containsSomegallery = callMockSocketIo = false;
+
     var lastElementIsVisible = TimelineBlocks.elementIsVisibleOnViewport($('.timeline-block:last-child'));
+
+    if (lastElementIsVisible) {
+      COUNTER = COUNTER + 1;
+
+      callMockSocketIo = COUNTER >= MAX_COUNTER;
+
+      console.log(lastElementIsVisible, callMockSocketIo, COUNTER);
+
+      if (!!callMockSocketIo) {
+          COUNTER = 0;
+      }
+    }
+
     if (!window.requestAnimationFrame) {
 
         setTimeout(function(){
             TimelineBlocks.showBlocksInViewport();
             if (lastElementIsVisible) {
+
               $.each(DATA_MOCK, function(item, element){
-                TimelineBlocks.render(element, false);
+                TimelineBlocks.render(element, callMockSocketIo);
                 if(!containsSomegallery) {
                   containsSomegallery = element.type === 'gallery';
                 }
@@ -326,27 +356,28 @@ $(document).ready(function() {
             }
           }, 100);
     } else {
-        window.requestAnimationFrame(function(){
-          TimelineBlocks.showBlocksInViewport();
-          if (lastElementIsVisible) {
-            $.each(DATA_MOCK, function(item, element){
-              TimelineBlocks.render(element, false);
-              if(!containsSomegallery) {
-                containsSomegallery = element.type === 'gallery';
-              }
-            });
+      window.requestAnimationFrame(function(){
+        TimelineBlocks.showBlocksInViewport();
+        if (lastElementIsVisible) {
 
-            if (!!containsSomegallery) {
-              Galleria.run('.gallery section.photos:not(.gallery-on)');
-              $('.gallery section.photos:not(.gallery-on)').addClass('gallery-on');
-              containsSomegallery = false;
+          $.each(DATA_MOCK, function(item, element){
+            TimelineBlocks.render(element, callMockSocketIo);
+            if(!containsSomegallery) {
+              containsSomegallery = element.type === 'gallery';
             }
+          });
 
-            TimelineBlocks.hideBlocksOutsideViewport();
-
-            $(window).trigger('scroll');
+          if (!!containsSomegallery) {
+            Galleria.run('.gallery section.photos:not(.gallery-on)');
+            $('.gallery section.photos:not(.gallery-on)').addClass('gallery-on');
+            containsSomegallery = false;
           }
-        });
+
+          TimelineBlocks.hideBlocksOutsideViewport();
+
+          $(window).trigger('scroll');
+        }
+      });
     }
 
   });

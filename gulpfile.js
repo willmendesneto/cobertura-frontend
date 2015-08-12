@@ -57,10 +57,10 @@ gulp.task('sass', function () {
  * Javascript Task
  */
 gulp.task('js', function(){
-	return gulp.src(['src/js/packages/*.js', 'src/js/components/*.js'])
+	return gulp.src(['src/js/packages/*.js', 'src/js/components/**/*.js'])
 		.pipe(plumber())
 		.pipe(concat('main.js'))
-		.pipe(uglify())
+		//.pipe(uglify())
 		.pipe(gulp.dest('assets/js/'))
 		.pipe(gulp.dest('_site/assets/js/'))
 });
