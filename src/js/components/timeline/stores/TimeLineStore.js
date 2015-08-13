@@ -9,7 +9,14 @@
 
   function startFrom () {
     _currentPage += 1;
-    return _data.length > 0 ? _data.slice(_currentPage) : [];
+    var filteredData = [];
+    if(_data.length > 0) {
+      for(var i = 0; _pageSize > i; i++) {
+        filteredData.push(_data[i]);
+        _data.shift();
+      }
+    }
+    return filteredData;
   }
 
   TimeLineStore = {
