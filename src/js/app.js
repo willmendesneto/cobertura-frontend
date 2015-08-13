@@ -17,7 +17,7 @@ $(document).ready(function() {
   timeLineStore.getBufferInformations().then(function(data) {
     if (data.length > 0) {
       $.each(data, function(item, element){
-        TimelineBlocks.render(element, true);
+        timelineBlocks.render(element, true);
       });
     }
   });
@@ -26,7 +26,6 @@ $(document).ready(function() {
 
   function checkGalleryRender(containsSomegallery, containsSomegallery) {
     if (!!containsSomegallery) {
-
       window.Galleria.run('.gallery section.photos:not(.gallery-on)');
       $('.gallery section.photos:not(.gallery-on)').addClass('gallery-on');
       containsSomegallery = false;
@@ -36,7 +35,7 @@ $(document).ready(function() {
   var socket = io.connect('//burburinho.herokuapp.com');
 
   socket.on('burburinho', function (data) {
-    timeLineStore.render(data.message, true);
+    timelineBlocks.render(data.message, true);
   });
 
   function loadOldestTimelineItems(lastElementIsVisible, containsSomegallery) {
@@ -73,7 +72,7 @@ $(document).ready(function() {
   $(window).on('scroll', function(){
     var containsSomegallery = false;
     var $lastTimelineItem = $('.timeline-block:last-child');
-    var lastElementIsVisible = timelineBlocks.elementIsVisibleOnViewport($lastTimelineItem, CONFIG.OFFSET);
+    var lastElementIsVisible = ($lastTimelineItem.size > 0) ? timelineBlocks.elementIsVisibleOnViewport($lastTimelineItem, CONFIG.OFFSET) : true;
 
     if (!window.requestAnimationFrame) {
 
