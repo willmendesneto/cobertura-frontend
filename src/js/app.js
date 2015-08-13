@@ -12,6 +12,8 @@ $(document).ready(function() {
   var timelineBlocks = window.TimelineBlocks;
   var CONFIG = window.CONFIG;
 
+  timeLineStore.loadServerData();
+
   timeLineStore.getBufferInformations().then(function(data) {
     if (data.length > 0) {
       $.each(data, function(item, element){
@@ -42,8 +44,13 @@ $(document).ready(function() {
     timelineBlocks.showBlocksInViewport(CONFIG.OFFSET);
     timelineBlocks.showBlocksInViewport();
     if (lastElementIsVisible) {
+      var localData = timeLineStore.getLocalOldestInformations();
 
-      $.each(CONFIG.DATA_MOCK, function(item, element){
+      if (localData.length === 0) {
+        return;
+      }
+
+      $.each(timeLineStore.getLocalOldestInformations(), function(item, element){
         timelineBlocks.render(element, false);
         if(!containsSomegallery) {
           containsSomegallery = element.type === 'gallery';
