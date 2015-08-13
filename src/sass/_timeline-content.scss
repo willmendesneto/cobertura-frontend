@@ -70,10 +70,13 @@
 
       a {
         color: black;
+        text-decoration: none;
       }
 
       .fa {
         font-size: .8em;
+        width: auto;
+        height: auto;
       }
 
       &:hover {
