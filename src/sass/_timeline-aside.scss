@@ -13,7 +13,6 @@ aside {
   color: #555;
   display: table;
 
-
   .scroll {
     min-height: 80%;
   }
@@ -23,47 +22,6 @@ aside {
 
     & + section {
       margin-top: 10px;
-    }
-  }
-
-  footer {
-    display: table-row;
-    background-color: #891A1C;
-    text-align: center;
-    color: white;
-    width: 100%;
-    padding: 20px 0;
-
-    a {
-      color: white;
-
-      &:focus {
-        color: white;
-      }
-    }
-
-    p {
-      margin: 0;
-      margin-top: 15px;
-
-      & + p {
-        margin-top: 5px;
-
-      }
-    }
-  }
-
-  header {
-    h1 {
-      color: black;
-      text-align: center;
-      font-size: 1.5em;
-    }
-    h2 {
-      margin-top: 0;
-      text-align: center;
-      border-bottom: 1px solid #dddddd;
-      color: darken(#891A1C, 1%);
     }
   }
 
@@ -78,7 +36,6 @@ aside {
   .choose-photos > a {
     text-decoration: none;
 
-
     img {
       width: 90px;
       opacity: 1;
@@ -90,13 +47,27 @@ aside {
       }
     }
   }
+}
 
-  .logos {
+.title {
+    margin-top: 0;
+    text-align: center;
+   .title-primary{
+      color: #000;
+      font-size: 1.5em;
+   }
+    .title-secundary{
+      border-bottom: 1px solid #dddddd;
+      color: darken(#891A1C, 1%);  
+    }
+}
+
+.social {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
-
-    .social {
+    
+    .fa {
       width: 50px;
       height: 50px;
       margin: auto;
@@ -107,19 +78,36 @@ aside {
       display: flex;
       justify-content: center;
       align-items: center;
-
-      .fa {
-        font-size: 2em;
-      }
-
+      font-size: 2em;
+      
       &:hover {
         cursor: pointer;
         background-color: $red-bdf;
-
         .fa {
           color: white;
         }
       }
     }
-  }
 }
+
+  footer {
+    display: table-row;
+    background-color: #891A1C;
+    text-align: center;
+    color: white;
+    width: 100%;
+    padding: 20px 0;
+    a {
+      color: white;
+      &:focus {
+        color: white;
+      }
+    }
+    p {
+      margin: 0;
+      margin-top: 15px;
+      & + p {
+        margin-top: 5px;
+      }
+    }
+  }
