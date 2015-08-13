@@ -32,7 +32,7 @@ $(document).ready(function() {
     }
   }
 
-  var socket = io.connect('//burburinho.herokuapp.com');
+  var socket = io.connect(CONFIG.URL_SOCKET_IO);
 
   socket.on('burburinho', function (data) {
     timelineBlocks.render(data.message, true);
@@ -41,7 +41,6 @@ $(document).ready(function() {
   function loadOldestTimelineItems(lastElementIsVisible, containsSomegallery) {
 
     timelineBlocks.showBlocksInViewport(CONFIG.OFFSET);
-    timelineBlocks.showBlocksInViewport();
     if (lastElementIsVisible) {
       var localData = timeLineStore.getLocalOldestInformations();
 
@@ -72,7 +71,9 @@ $(document).ready(function() {
   $(window).on('scroll', function(){
     var containsSomegallery = false;
     var $lastTimelineItem = $('.timeline-block:last-child');
-    var lastElementIsVisible = ($lastTimelineItem.size > 0) ? timelineBlocks.elementIsVisibleOnViewport($lastTimelineItem, CONFIG.OFFSET) : true;
+    var lastElementIsVisible = ($lastTimelineItem.size() > 0) ?
+                                timelineBlocks.elementIsVisibleOnViewport($lastTimelineItem, CONFIG.OFFSET) :
+                                true;
 
     if (!window.requestAnimationFrame) {
 

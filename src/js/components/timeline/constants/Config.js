@@ -3,6 +3,9 @@
 
   var CONFIG = {
     OFFSET: 0.8,
+    URL_BUFFER_INFO: 'http://burburinho.herokuapp.com/api/burburinhos',
+    URL_OLDEST_INFO: 'http://burburinho.herokuapp.com/api/test',
+    URL_SOCKET_IO: '//burburinho.herokuapp.com',
     DATA_MOCK: [
       {
         timestamp: '2015-08-11 12:12:12',

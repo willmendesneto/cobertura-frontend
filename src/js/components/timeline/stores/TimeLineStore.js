@@ -4,6 +4,7 @@
   var _data = [];
   var _pageSize = 10;
   var _currentPage = 0;
+  var CONFIG = window.CONFIG;
 
   var TimeLineStore = {};
 
@@ -36,11 +37,11 @@
     },
 
     getBufferInformations: function() {
-      return $.getJSON('http://burburinho.herokuapp.com/api/burburinhos');
+      return $.getJSON(CONFIG.URL_BUFFER_INFO);
     },
 
     getOldestInformations: function() {
-      return $.getJSON('http://burburinho.herokuapp.com/api/test');
+      return $.getJSON(CONFIG.URL_OLDEST_INFO);
     }
 
   };
