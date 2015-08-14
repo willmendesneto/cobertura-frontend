@@ -1,8 +1,0 @@
-_site
-.sass-cache
-node_modules
-_drafts_site/
-node_modules/
-.DS_Store
-assets/
-.publish/
