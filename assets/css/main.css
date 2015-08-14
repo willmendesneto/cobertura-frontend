@@ -3,10 +3,12 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around; }
+  .social a {
+    text-decoration: none;
+    color: #555; }
   .social .fa {
     width: 50px;
     height: 50px;
-    margin: auto;
     transition: background-color 0.5s ease;
     background-color: rgba(220, 220, 220, 0.8);
     border-radius: 50%;
