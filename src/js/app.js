@@ -24,7 +24,8 @@ $(document).ready(function() {
 
   timelineBlocks.hideBlocksOutsideViewport(CONFIG.OFFSET);
 
-  function checkGalleryRender(containsSomegallery, containsSomegallery) {
+
+  function runGalleria(containsSomegallery) {
     if (!!containsSomegallery) {
       window.Galleria.run('.gallery section.photos:not(.gallery-on)');
       $('.gallery section.photos:not(.gallery-on)').addClass('gallery-on');
@@ -32,16 +33,19 @@ $(document).ready(function() {
     }
   }
 
-  var socket = io.connect(CONFIG.URL_SOCKET_IO);
+  function timeLineItemHasGalleryType(element){
+    return element.type === 'gallery';
+  }
 
-  socket.on('burburinho', function (data) {
-    timelineBlocks.render(data.message, true);
-  });
-
-  function loadOldestTimelineItems(lastElementIsVisible, containsSomegallery) {
-
+  function loadOldestTimelineItems(lastElementIsVisible, newestInformation, socketIOData) {
+    newestInformation = typeof newestInformation !== 'undefined' ? newestInformation : false;
+    var containsSomegallery = false;
     timelineBlocks.showBlocksInViewport(CONFIG.OFFSET);
-    if (lastElementIsVisible) {
+    if (!lastElementIsVisible) {
+      return;
+    }
+
+    if (!newestInformation) {
       var localData = timeLineStore.getLocalOldestInformations();
 
       if (localData.length === 0) {
@@ -49,27 +53,35 @@ $(document).ready(function() {
       }
 
       $.each(timeLineStore.getLocalOldestInformations(), function(item, element){
-        timelineBlocks.render(element, false);
+        timelineBlocks.render(element, newestInformation);
         if(!containsSomegallery) {
-          containsSomegallery = element.type === 'gallery';
+          containsSomegallery = timeLineItemHasGalleryType(element);
         }
       });
 
-      if (!!containsSomegallery) {
-        Galleria.run('.gallery section.photos:not(.gallery-on)');
-        $('.gallery section.photos:not(.gallery-on)').addClass('gallery-on');
-        containsSomegallery = false;
-      }
-
-      timelineBlocks.hideBlocksOutsideViewport(CONFIG.OFFSET);
-
-      $(window).trigger('scroll');
+    } else {
+      timelineBlocks.render(socketIOData, newestInformation);
+      containsSomegallery = timeLineItemHasGalleryType(socketIOData);
     }
+
+    runGalleria(!!containsSomegallery);
+    timelineBlocks.hideBlocksOutsideViewport(CONFIG.OFFSET);
+
+    $(window).trigger('scroll');
   }
+
+  var socket = io.connect(CONFIG.URL_SOCKET_IO);
+
+  socket.on('burburinho', function (data) {
+    var $lastTimelineItem = $('.timeline-block:last-child');
+    var lastElementIsVisible = ($lastTimelineItem.size() > 0) ?
+                                timelineBlocks.elementIsVisibleOnViewport($lastTimelineItem, CONFIG.OFFSET) :
+                                true;
+    loadOldestTimelineItems(lastElementIsVisible, true, data.message);
+  });
 
   //on scolling, show/animate timeline blocks when enter the viewport
   $(window).on('scroll', function(){
-    var containsSomegallery = false;
     var $lastTimelineItem = $('.timeline-block:last-child');
     var lastElementIsVisible = ($lastTimelineItem.size() > 0) ?
                                 timelineBlocks.elementIsVisibleOnViewport($lastTimelineItem, CONFIG.OFFSET) :
@@ -78,11 +90,11 @@ $(document).ready(function() {
     if (!window.requestAnimationFrame) {
 
       setTimeout(function(){
-        loadOldestTimelineItems(lastElementIsVisible, containsSomegallery);
+        loadOldestTimelineItems(lastElementIsVisible);
       }, 100);
     } else {
       window.requestAnimationFrame(function(){
-        loadOldestTimelineItems(lastElementIsVisible, containsSomegallery);
+        loadOldestTimelineItems(lastElementIsVisible);
       });
     }
 
