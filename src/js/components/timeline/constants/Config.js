@@ -10,7 +10,8 @@
   var CONFIG = {
     OFFSET: 0.8,
     URL_BUFFER_INFO: getSocketIOUrl()+'/api/burburinhos',
-    URL_SOCKET_IO: getSocketIOUrl()
+    URL_SOCKET_IO: getSocketIOUrl(),
+    URL_OLDEST_INFO: getSocketIOUrl()+'/api/burburinhos'
   };
 
   if (typeof define !== 'undefined' && define.amd) {
