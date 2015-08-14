@@ -22,10 +22,8 @@
 
   TimeLineStore = {
 
-    loadServerData: function() {
-      TimeLineStore.getBufferInformations().then(function(data) {
-        _data = data;
-      });
+    setData: function(data) {
+      _data = data;
     },
 
     getLocalOldestInformations: function() {
