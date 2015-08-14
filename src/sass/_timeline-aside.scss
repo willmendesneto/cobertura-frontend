@@ -43,7 +43,7 @@ aside {
 
   .choose-photos {
     @include media-query(M) {
-      height: 350px;
+      height: 125px;
       overflow-y: auto;
     }
 
