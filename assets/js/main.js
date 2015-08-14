@@ -954,6 +954,73 @@ function RenderException(message) {
 (function(window) {
   'use strict';
 
+  var _data = [];
+  var _pageSize = 10;
+  var _currentPage = 0;
+  var CONFIG = window.CONFIG;
+
+  var TimeLineStore = {};
+
+  function startFrom () {
+    _currentPage += 1;
+    var filteredData = [];
+    if(_data.length > 0) {
+      for(var i = 0; _pageSize > i; i++) {
+        if (!!_data[i]){
+          filteredData.push(_data[i]);
+          _data.shift();
+        }
+      }
+    }
+    return filteredData;
+  }
+
+  TimeLineStore = {
+
+    setData: function(data) {
+      _data = data;
+    },
+
+    remove: function(item) {
+      var index = _data.filter( function (element, pos) {
+        if(element.timestamp === item.timestamp) {
+          return pos;
+        }
+      });
+      _data.splice(index, 1);
+    },
+
+    getLocalOldestInformations: function() {
+      return startFrom();
+    },
+
+    numberOfPages: function() {
+      return Math.ceil(_data.length / _pageSize);
+    },
+
+    getBufferInformations: function() {
+      return $.getJSON(CONFIG.URL_BUFFER_INFO);
+    }
+
+  };
+
+  if (typeof define !== 'undefined' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define(function() {
+      return TimeLineStore;
+    });
+  } else if (typeof module !== 'undefined' && module.exports) {
+    module.exports = TimeLineStore.attach;
+    module.exports.TimeLineStore = TimeLineStore;
+  } else {
+    window.TimeLineStore = TimeLineStore;
+  }
+
+})(window);
+
+(function(window) {
+  'use strict';
+
   var ITimeLineBlock = {
     render: function(data) {
       throw new RenderException('Render method wasn\'t implemented!');
@@ -1177,62 +1244,6 @@ function RenderException(message) {
 
 })(window);
 
-(function(window) {
-  'use strict';
-
-  var _data = [];
-  var _pageSize = 10;
-  var _currentPage = 0;
-  var CONFIG = window.CONFIG;
-
-  var TimeLineStore = {};
-
-  function startFrom () {
-    _currentPage += 1;
-    var filteredData = [];
-    if(_data.length > 0) {
-      for(var i = 0; _pageSize > i; i++) {
-        filteredData.push(_data[i]);
-        _data.shift();
-      }
-    }
-    return filteredData;
-  }
-
-  TimeLineStore = {
-
-    setData: function(data) {
-      _data = data;
-    },
-
-    getLocalOldestInformations: function() {
-      return startFrom();
-    },
-
-    numberOfPages: function() {
-      return Math.ceil(_data.length / _pageSize);
-    },
-
-    getBufferInformations: function() {
-      return $.getJSON(CONFIG.URL_BUFFER_INFO);
-    }
-
-  };
-
-  if (typeof define !== 'undefined' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(function() {
-      return TimeLineStore;
-    });
-  } else if (typeof module !== 'undefined' && module.exports) {
-    module.exports = TimeLineStore.attach;
-    module.exports.TimeLineStore = TimeLineStore;
-  } else {
-    window.TimeLineStore = TimeLineStore;
-  }
-
-})(window);
-
 $(document).ready(function() {
 
   $('.button-new-content').click(function() {
@@ -1246,14 +1257,6 @@ $(document).ready(function() {
   var timeLineStore = window.TimeLineStore;
   var timelineBlocks = window.TimelineBlocks;
   var CONFIG = window.CONFIG;
-
-  timeLineStore.getBufferInformations().then(function(data) {
-    if (data.length > 0) {
-      $.each(data, function(item, element){
-        timelineBlocks.render(element, true);
-      });
-    }
-  });
 
   timelineBlocks.hideBlocksOutsideViewport(CONFIG.OFFSET);
 
@@ -1280,66 +1283,64 @@ $(document).ready(function() {
     }
   }
 
-  function loadOldestTimelineItems(lastElementIsVisible, newestInformation, socketIOData) {
-    newestInformation = typeof newestInformation !== 'undefined' ? newestInformation : false;
-    var containsSomegallery = false;
-    timelineBlocks.showBlocksInViewport(CONFIG.OFFSET);
-    if (!lastElementIsVisible && !newestInformation) {
-      return;
-    }
-
-    if (!newestInformation) {
-      timeLineStore.getBufferInformations().then(function(localData){
-
-        if (localData.length === 0) {
-          return;
-        }
-
-        $.each(localData, function(item, element){
-          timelineBlocks.render(element, newestInformation);
-          addImageInHightlightsContent(element);
-
-          if(!containsSomegallery) {
-            containsSomegallery = timeLineItemHasGalleryType(element);
-          }
-        });
-      });
-
-    } else {
-      timelineBlocks.render(socketIOData, newestInformation);
-      addImageInHightlightsContent(socketIOData);
-      containsSomegallery = timeLineItemHasGalleryType(socketIOData);
-    }
-
-    runGalleria(!!containsSomegallery);
-    timelineBlocks.hideBlocksOutsideViewport(CONFIG.OFFSET);
-
-    $(window).trigger('scroll');
-  }
-
   var socket = io.connect(CONFIG.URL_SOCKET_IO);
 
-  socket.on('burburinho', function (data) {
-    var $lastTimelineItem = $('.timeline-block:last-child');
-    var lastElementIsVisible = ($lastTimelineItem.size() > 0) ?
-                                timelineBlocks.elementIsVisibleOnViewport($lastTimelineItem, CONFIG.OFFSET) : true;
+  timeLineStore.getBufferInformations(CONFIG.URL_BUFFER_INFO).then(function(items){
 
-    loadOldestTimelineItems(lastElementIsVisible, true, data.message);
-  });
+    timeLineStore.setData(items);
 
-  var loadMoreItens =  function(){
-    var $lastTimelineItem = $('.timeline-block:last-child');
-    var lastElementIsVisible = ($lastTimelineItem.size() > 0) ?
-                                timelineBlocks.elementIsVisibleOnViewport($lastTimelineItem, CONFIG.OFFSET) :
-                                true;
+    if (items.length > 0) {
+      for(var i = 0; items.length > i; i++) {
+        timelineBlocks.render(items[i], true);
+        timeLineStore.remove(items[i]);
+      }
+    }
 
-    loadOldestTimelineItems(lastElementIsVisible);
-  };
-  $(window).load(function(){
+    socket.on('burburinho', function (data) {
+
+      timeLineStore.remove(data.message);
+
+      timelineBlocks.showBlocksInViewport(CONFIG.OFFSET);
+      timelineBlocks.render(data.message, true);
+      addImageInHightlightsContent(data.message);
+      containsSomegallery = timeLineItemHasGalleryType(data.message);
+
+      runGalleria(!!containsSomegallery);
+      timelineBlocks.hideBlocksOutsideViewport(CONFIG.OFFSET);
+    });
+
     $(window).on('scroll', function(){
-      loadMoreItens();
+      var containsSomegallery = false;
+      var $lastTimelineItem = $('.timeline-block:last-child');
+      var lastElementIsVisible = ($lastTimelineItem.size() > 0) ?
+                                  timelineBlocks.elementIsVisibleOnViewport($lastTimelineItem, CONFIG.OFFSET) :
+                                  true;
+
+      timelineBlocks.showBlocksInViewport(CONFIG.OFFSET);
+      if (!lastElementIsVisible) {
+        return;
+      }
+
+      var localData = timeLineStore.getLocalOldestInformations();
+
+      if (localData.length === 0) {
+        return;
+      }
+
+      $.each(localData, function(item, element){
+
+        timelineBlocks.render(element, false);
+        addImageInHightlightsContent(element);
+
+        if(!containsSomegallery) {
+          containsSomegallery = timeLineItemHasGalleryType(element);
+        }
+      });
+
+      runGalleria(!!containsSomegallery);
+      timelineBlocks.hideBlocksOutsideViewport(CONFIG.OFFSET);
+
     });
   });
 
-  loadMoreItens();
 });
