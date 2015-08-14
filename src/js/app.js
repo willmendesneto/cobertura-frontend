@@ -41,7 +41,7 @@ $(document).ready(function() {
     newestInformation = typeof newestInformation !== 'undefined' ? newestInformation : false;
     var containsSomegallery = false;
     timelineBlocks.showBlocksInViewport(CONFIG.OFFSET);
-    if (!lastElementIsVisible) {
+    if (!lastElementIsVisible && !newestInformation) {
       return;
     }
 
@@ -75,20 +75,23 @@ $(document).ready(function() {
   socket.on('burburinho', function (data) {
     var $lastTimelineItem = $('.timeline-block:last-child');
     var lastElementIsVisible = ($lastTimelineItem.size() > 0) ?
-                                timelineBlocks.elementIsVisibleOnViewport($lastTimelineItem, CONFIG.OFFSET) :
-                                true;
+                                timelineBlocks.elementIsVisibleOnViewport($lastTimelineItem, CONFIG.OFFSET) : true;
+
     loadOldestTimelineItems(lastElementIsVisible, true, data.message);
   });
 
-  //on scolling, show/animate timeline blocks when enter the viewport
-  $(window).on('scroll', function(){
+  var loadMoreItens =  function(){
     var $lastTimelineItem = $('.timeline-block:last-child');
     var lastElementIsVisible = ($lastTimelineItem.size() > 0) ?
                                 timelineBlocks.elementIsVisibleOnViewport($lastTimelineItem, CONFIG.OFFSET) :
                                 true;
 
     loadOldestTimelineItems(lastElementIsVisible);
+  };
 
+  $(window).on('scroll', function(){
+    loadMoreItens();
   });
 
+  loadMoreItens();
 });
