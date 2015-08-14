@@ -1,0 +1,4 @@
+gulp imagemin
+gulp build
+bundle exec jekyll build
+gulp deploy
