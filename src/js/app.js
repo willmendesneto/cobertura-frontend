@@ -12,8 +12,6 @@ $(document).ready(function() {
   var timelineBlocks = window.TimelineBlocks;
   var CONFIG = window.CONFIG;
 
-  timeLineStore.loadServerData();
-
   timeLineStore.getBufferInformations().then(function(data) {
     if (data.length > 0) {
       $.each(data, function(item, element){
@@ -56,20 +54,20 @@ $(document).ready(function() {
     }
 
     if (!newestInformation) {
-      var localData = timeLineStore.getLocalOldestInformations();
+      timeLineStore.getBufferInformations().then(function(localData){
 
-      if (localData.length === 0) {
-        return;
-      }
-
-      $.each(timeLineStore.getLocalOldestInformations(), function(item, element){
-        timelineBlocks.render(element, newestInformation);
-
-        addImageInHightlightsContent(element);
-
-        if(!containsSomegallery) {
-          containsSomegallery = timeLineItemHasGalleryType(element);
+        if (localData.length === 0) {
+          return;
         }
+
+        $.each(localData, function(item, element){
+          timelineBlocks.render(element, newestInformation);
+          addImageInHightlightsContent(element);
+
+          if(!containsSomegallery) {
+            containsSomegallery = timeLineItemHasGalleryType(element);
+          }
+        });
       });
 
     } else {
@@ -102,9 +100,10 @@ $(document).ready(function() {
 
     loadOldestTimelineItems(lastElementIsVisible);
   };
-
-  $(window).on('scroll', function(){
-    loadMoreItens();
+  $(window).load(function(){
+    $(window).on('scroll', function(){
+      loadMoreItens();
+    });
   });
 
   loadMoreItens();
