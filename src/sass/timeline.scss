@@ -5,6 +5,7 @@
 @import "social-buttons";
 @import "_timeline-content";
 @import "_timeline-aside";
+@import "_swipe";
 
 .container {
   min-height: 100vh;
@@ -23,7 +24,7 @@
 }
 
 #timeline {
-  width: 50%;
+  width: 85%;
   float: left;
 	position: relative;
 	padding: 2em 1em;
@@ -31,6 +32,10 @@
 		top: 0;
     bottom: 0;
 	}
+	@include media-query(M) {
+    width: 50%;
+
+  }
 
 	&::before {
 		content: '';

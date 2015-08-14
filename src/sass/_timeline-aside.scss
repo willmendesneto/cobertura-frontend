@@ -2,15 +2,21 @@ aside {
   padding-top: 5px;
   background: white;
   padding: 0;
-  float: right;
   min-height: 100vh;
-  right: 0;
-  width: 40%;
   -webkit-box-shadow: 0px 0px 19px 6px rgba(0,0,0,0.42);
   -moz-box-shadow: 0px 0px 19px 6px rgba(0,0,0,0.42);
   box-shadow: 0px 0px 19px 6px rgba(0,0,0,0.42);
   color: #555;
   display: table;
+  float: right;
+  right: 0;
+  position: absolute;
+  width: 60%;
+
+	@include media-query(M) {
+    width: 40%;
+    position: inital;
+  }
 
   .scroll {
     min-height: 70vh;
@@ -22,7 +28,7 @@ aside {
   }
 
   footer, .push {
-    height:10vh;
+    height: 26px;
   }
 
   section {
