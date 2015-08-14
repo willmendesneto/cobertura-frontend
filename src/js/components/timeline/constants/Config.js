@@ -1,11 +1,17 @@
 (function(window) {
   'use strict';
 
+  function getSocketIOUrl(){
+    return window.location.origin.indexOf('localhost') === -1 ?
+            '//burburinho.herokuapp.com' :
+            '//localhost:5000';
+  }
+
   var CONFIG = {
     OFFSET: 0.8,
     URL_BUFFER_INFO: 'http://burburinho.herokuapp.com/api/burburinhos',
     URL_OLDEST_INFO: 'http://burburinho.herokuapp.com/api/test',
-    URL_SOCKET_IO: '//burburinho.herokuapp.com',
+    URL_SOCKET_IO: getSocketIOUrl(),
     DATA_MOCK: [
       {
         timestamp: '2015-08-11 12:12:12',
