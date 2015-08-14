@@ -91,7 +91,7 @@ aside {
     text-align: center; }
   @media only screen and (min-width: 768px) {
     aside .choose-photos {
-      height: 350px;
+      height: 125px;
       overflow-y: auto; } }
   aside .choose-photos > a {
     text-decoration: none; }
