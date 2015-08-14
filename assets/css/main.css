@@ -89,6 +89,10 @@ aside {
     font-style: italic;
     font-weight: 200;
     text-align: center; }
+  @media only screen and (min-width: 768px) {
+    aside .choose-photos {
+      height: 350px;
+      overflow-y: auto; } }
   aside .choose-photos > a {
     text-decoration: none; }
     aside .choose-photos > a img {
@@ -141,6 +145,9 @@ main.container {
   transition: right 0.4s ease-in-out; }
   .show-options.open {
     right: 240px; }
+  @media only screen and (min-width: 768px) {
+    .show-options {
+      display: none; } }
 
 main > aside {
   position: absolute;
@@ -157,7 +164,8 @@ main > aside {
   @media only screen and (min-width: 768px) {
     main > aside {
       width: 40%;
-      right: 0; } }
+      right: 0;
+      position: fixed; } }
 
 .container {
   min-height: 100vh;
@@ -223,27 +231,21 @@ main > aside {
 
 .button-new-content {
   position: fixed;
-  left: 40%;
   border: none;
-  margin-top: 20px;
-  z-index: 200;
+  top: 0;
+  z-index: 1500;
   color: #e6e6e6;
-  font-size: 20px;
-  padding: 20px;
-  text-shadow: 0px -1px 0px rgba(30, 30, 30, 0.8);
+  font-size: 3em;
   background: #891A1C;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
   -webkit-box-shadow: 0px 2px 1px rgba(50, 50, 50, 0.75);
   -moz-box-shadow: 0px 2px 1px rgba(50, 50, 50, 0.75);
   box-shadow: 0px 2px 1px rgba(50, 50, 50, 0.75);
   cursor: pointer; }
   .button-new-content.is-hidden {
     visibility: hidden; }
-  .button-new-content:hover {
-    background: -moz-linear-gradient(90deg, #aa1414 30%, #891A1C 70%);
-    background: -webkit-linear-gradient(90deg, #aa1414 30%, #891A1C 70%);
-    background: -o-linear-gradient(90deg, #aa1414 30%, #891A1C 70%);
-    background: -ms-linear-gradient(90deg, #aa1414 30%, #891A1C 70%);
-    background: linear-gradient(0deg, #aa1414 30%, #891A1C 70%); }
 
 @-webkit-keyframes bounce-1 {
   0% {
@@ -475,6 +477,9 @@ main.container {
   transition: right 0.4s ease-in-out; }
   .show-options.open {
     right: 240px; }
+  @media only screen and (min-width: 768px) {
+    .show-options {
+      display: none; } }
 
 main > aside {
   position: absolute;
@@ -491,7 +496,8 @@ main > aside {
   @media only screen and (min-width: 768px) {
     main > aside {
       width: 40%;
-      right: 0; } }
+      right: 0;
+      position: fixed; } }
 
 main {
   background: linear-gradient(#fff, #ccc); }
