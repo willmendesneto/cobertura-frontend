@@ -52,41 +52,13 @@ aside {
 .title {
     margin-top: 0;
     text-align: center;
-   .title-primary{
+   &-primary{
       color: #000;
       font-size: 1.5em;
    }
-    .title-secundary{
+    &-secundary{
       border-bottom: 1px solid #dddddd;
       color: darken(#891A1C, 1%);  
-    }
-}
-
-.social {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    
-    .fa {
-      width: 50px;
-      height: 50px;
-      margin: auto;
-      transition: background-color 0.5s ease;
-      background-color: rgba(220,220,220,0.8);
-      border-radius: 50%;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 2em;
-      
-      &:hover {
-        cursor: pointer;
-        background-color: $red-bdf;
-        .fa {
-          color: white;
-        }
-      }
     }
 }
 
@@ -111,3 +83,11 @@ aside {
       }
     }
   }
+
+
+
+
+
+
+
+
