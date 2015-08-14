@@ -39,4 +39,8 @@ main > aside {
   &.open {
     right: 0;
   }
+	@include media-query(M) {
+    width: 40%;
+    right: 0;
+  }
 }

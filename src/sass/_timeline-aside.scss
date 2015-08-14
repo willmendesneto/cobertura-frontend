@@ -11,12 +11,6 @@ aside {
   float: right;
   right: 0;
   position: absolute;
-  width: 60%;
-
-	@include media-query(M) {
-    width: 40%;
-    position: inital;
-  }
 
   .scroll {
     min-height: 70vh;
@@ -82,7 +76,6 @@ aside {
     text-align: center;
     color: white;
     width: 100%;
-    padding: 20px 0;
     a {
       color: white;
       &:focus {
@@ -90,11 +83,7 @@ aside {
       }
     }
     p {
-      margin: 0;
-      margin-top: 15px;
-      & + p {
-        margin-top: 5px;
-      }
+      margin: 15px 0;
     }
   }
 
