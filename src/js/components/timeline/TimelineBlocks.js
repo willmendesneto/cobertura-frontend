@@ -2,11 +2,11 @@
   'use strict';
 
   var showButtonNewContent = function(){
-
     if( $(window).scrollTop() > 500 ) {
       $('.button-new-content').fadeIn().removeClass('is-hidden');
     }
   };
+
   var TimelineBlocks = {};
 
   TimelineBlocks = {

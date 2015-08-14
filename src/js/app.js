@@ -37,6 +37,15 @@ $(document).ready(function() {
     return element.type === 'gallery';
   }
 
+  function addImageInHightlightsContent(element) {
+    if (element.type === 'photo') {
+      $('.choose-photos .photo:last-child')
+        .after('<a class="photo" href="' + getOptmizedImageUrl(element.url) + '">' +
+          '<img src="' + getOptmizedImageUrl(element.url) + '" alt="' + element.content + '" width="90" height="60">' +
+        '</a>');
+    }
+  }
+
   function loadOldestTimelineItems(lastElementIsVisible, newestInformation, socketIOData) {
     newestInformation = typeof newestInformation !== 'undefined' ? newestInformation : false;
     var containsSomegallery = false;
@@ -54,6 +63,9 @@ $(document).ready(function() {
 
       $.each(timeLineStore.getLocalOldestInformations(), function(item, element){
         timelineBlocks.render(element, newestInformation);
+
+        addImageInHightlightsContent(element);
+
         if(!containsSomegallery) {
           containsSomegallery = timeLineItemHasGalleryType(element);
         }
@@ -61,6 +73,7 @@ $(document).ready(function() {
 
     } else {
       timelineBlocks.render(socketIOData, newestInformation);
+      addImageInHightlightsContent(socketIOData);
       containsSomegallery = timeLineItemHasGalleryType(socketIOData);
     }
 

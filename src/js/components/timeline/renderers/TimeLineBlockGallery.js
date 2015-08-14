@@ -2,7 +2,7 @@
   'use strict';
 
   var TimeLineBlockGallery = {};
-
+  
   extend(TimeLineBlockGallery, window.ITimeLineBlock);
 
   TimeLineBlockGallery.render = function(data) {
@@ -10,7 +10,7 @@
     var formattedDateHour = getFormattedHourAndMinutes(data.timestamp);
 
     var images = data.content.map(function(item){
-      return '<img src="' + item.url + '" alt="' + item.description + '"/>';
+      return '<img src="' + getOptmizedImageUrl(item.url) + '" alt="' + item.description + '"/>';
     });
 
     return '<div class="timeline-block">' +

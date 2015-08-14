@@ -1,4 +1,8 @@
 
+  function getOptmizedImageUrl(url) {
+    return !window.UA.isMobile() ? url : url.replace('_b.jpg', '_n.jpg');
+  }
+
   function getMonthName(month) {
     var month = parseInt(month);
     var currentMonth = '';
@@ -40,7 +44,7 @@
   function getFormattedHourAndMinutes(timestamp) {
     return timestamp.split(' ')[1].split(':', 2).join(':');
   }
-  
+
   function capitalize(element) {
       return element.charAt(0).toUpperCase() + element.slice(1);
   }
