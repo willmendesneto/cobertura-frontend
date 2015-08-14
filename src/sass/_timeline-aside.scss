@@ -41,17 +41,24 @@ aside {
     }
   }
 
-  .choose-photos > a {
-    text-decoration: none;
+  .choose-photos {
+    @include media-query(M) {
+      height: 350px;
+      overflow-y: auto;
+    }
 
-    img {
-      width: 90px;
-      opacity: 1;
-      background-color: rgba(0,0,0,0.55);
+    & > a {
+      text-decoration: none;
 
-      &:hover{
-        cursor: pointer;
-        opacity: 0.3;
+      img {
+        width: 90px;
+        opacity: 1;
+        background-color: rgba(0,0,0,0.55);
+
+        &:hover{
+          cursor: pointer;
+          opacity: 0.3;
+        }
       }
     }
   }

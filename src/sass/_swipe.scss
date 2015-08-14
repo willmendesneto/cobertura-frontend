@@ -25,6 +25,10 @@ main.container {
   &.open{
     right: 240px;
   }
+
+	@include media-query(M) {
+    display: none;
+  }
 }
 
 
@@ -42,5 +46,6 @@ main > aside {
 	@include media-query(M) {
     width: 40%;
     right: 0;
+    position: fixed;
   }
 }
