@@ -86,15 +86,15 @@
 
 .button-new-content{
   position: fixed;
-  left: 40%;
   border: none;
-  margin-top: 20px;
-  z-index: 200;
+  top: 0;
+  z-index: 1500;
   color: rgb(230, 230, 230);
-  font-size: 20px;
-  padding: 20px;
-  text-shadow: 0px -1px 0px rgba(30, 30, 30, 0.8);
-  background: #891A1C;
+  font-size: 3em;
+  background: $red-bdf;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
   -webkit-box-shadow: 0px 2px 1px rgba(50, 50, 50, 0.75);
   -moz-box-shadow:    0px 2px 1px rgba(50, 50, 50, 0.75);
   box-shadow:         0px 2px 1px rgba(50, 50, 50, 0.75);
@@ -102,15 +102,6 @@
 
   &.is-hidden {
     visibility: hidden;
-  }
-
-  &:hover {
-    background: -moz-linear-gradient(90deg, rgb(170, 20, 20) 30%, #891A1C 70%);
-    background: -webkit-linear-gradient(90deg, rgb(170, 20, 20) 30%, #891A1C 70%);
-    background: -o-linear-gradient(90deg, rgb(170, 20, 20) 30%, #891A1C 70%);
-    background: -ms-linear-gradient(90deg, rgb(170, 20, 20) 30%, #891A1C 70%);
-    background: linear-gradient(0deg, rgb(170, 20, 20) 30%, #891A1C 70%);
-
   }
 }
 
