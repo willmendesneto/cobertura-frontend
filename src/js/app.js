@@ -87,16 +87,7 @@ $(document).ready(function() {
                                 timelineBlocks.elementIsVisibleOnViewport($lastTimelineItem, CONFIG.OFFSET) :
                                 true;
 
-    if (!window.requestAnimationFrame) {
-
-      setTimeout(function(){
-        loadOldestTimelineItems(lastElementIsVisible);
-      }, 100);
-    } else {
-      window.requestAnimationFrame(function(){
-        loadOldestTimelineItems(lastElementIsVisible);
-      });
-    }
+    loadOldestTimelineItems(lastElementIsVisible);
 
   });
 
