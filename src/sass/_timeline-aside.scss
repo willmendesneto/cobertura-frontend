@@ -3,10 +3,9 @@ aside {
   background: white;
   padding: 0;
   float: right;
-  height: 100vh;
+  min-height: 100vh;
   right: 0;
   width: 40%;
-  position: fixed;
   -webkit-box-shadow: 0px 0px 19px 6px rgba(0,0,0,0.42);
   -moz-box-shadow: 0px 0px 19px 6px rgba(0,0,0,0.42);
   box-shadow: 0px 0px 19px 6px rgba(0,0,0,0.42);
@@ -14,7 +13,16 @@ aside {
   display: table;
 
   .scroll {
-    min-height: 80%;
+    min-height: 70vh;
+  }
+
+  .wrap {
+    min-height: 100%;
+    margin: 0 auto -10vh;
+  }
+
+  footer, .push {
+    height:10vh;
   }
 
   section {
@@ -58,7 +66,7 @@ aside {
    }
     &-secundary{
       border-bottom: 1px solid #dddddd;
-      color: darken(#891A1C, 1%);  
+      color: darken(#891A1C, 1%);
     }
 }
 

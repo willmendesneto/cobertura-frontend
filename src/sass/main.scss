@@ -1,6 +1,10 @@
 @import 'timeline';
 @import url(http://fonts.googleapis.com/css?family=Exo:400,500,700,200italic);
 
+
+main {
+  background: linear-gradient(#fff, #ccc);
+}
 html * {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
