@@ -23,7 +23,7 @@
   TimeLineStore = {
 
     loadServerData: function() {
-      TimeLineStore.getOldestInformations().then(function(data) {
+      TimeLineStore.getBufferInformations().then(function(data) {
         _data = data;
       });
     },
@@ -38,10 +38,6 @@
 
     getBufferInformations: function() {
       return $.getJSON(CONFIG.URL_BUFFER_INFO);
-    },
-
-    getOldestInformations: function() {
-      return $.getJSON(CONFIG.URL_OLDEST_INFO);
     }
 
   };

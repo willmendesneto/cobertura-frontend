@@ -39,8 +39,9 @@ $(document).ready(function() {
 
   function addImageInHightlightsContent(element) {
     if (element.type === 'photo') {
-      $('.choose-photos .photo:last-child')
-        .after('<a class="photo" href="' + getOptmizedImageUrl(element.url) + '">' +
+      $('.choose-photos').html(
+        $('.choose-photos').html() +
+        '<a class="photo" href="' + getOptmizedImageUrl(element.url) + '">' +
           '<img src="' + getOptmizedImageUrl(element.url) + '" alt="' + element.content + '" width="90" height="60">' +
         '</a>');
     }
