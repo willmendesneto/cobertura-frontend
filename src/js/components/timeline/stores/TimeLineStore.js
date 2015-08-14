@@ -13,8 +13,10 @@
     var filteredData = [];
     if(_data.length > 0) {
       for(var i = 0; _pageSize > i; i++) {
-        filteredData.push(_data[i]);
-        _data.shift();
+        if (!!_data[i]){
+          filteredData.push(_data[i]);
+          _data.shift();
+        }
       }
     }
     return filteredData;
@@ -24,6 +26,15 @@
 
     setData: function(data) {
       _data = data;
+    },
+
+    remove: function(item) {
+      var index = _data.filter( function (element, pos) {
+        if(element.timestamp === item.timestamp) {
+          return pos;
+        }
+      });
+      _data.splice(index, 1);
     },
 
     getLocalOldestInformations: function() {

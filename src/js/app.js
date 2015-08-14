@@ -12,14 +12,6 @@ $(document).ready(function() {
   var timelineBlocks = window.TimelineBlocks;
   var CONFIG = window.CONFIG;
 
-  timeLineStore.getBufferInformations().then(function(data) {
-    if (data.length > 0) {
-      $.each(data, function(item, element){
-        timelineBlocks.render(element, true);
-      });
-    }
-  });
-
   timelineBlocks.hideBlocksOutsideViewport(CONFIG.OFFSET);
 
 
@@ -45,66 +37,64 @@ $(document).ready(function() {
     }
   }
 
-  function loadOldestTimelineItems(lastElementIsVisible, newestInformation, socketIOData) {
-    newestInformation = typeof newestInformation !== 'undefined' ? newestInformation : false;
-    var containsSomegallery = false;
-    timelineBlocks.showBlocksInViewport(CONFIG.OFFSET);
-    if (!lastElementIsVisible && !newestInformation) {
-      return;
-    }
-
-    if (!newestInformation) {
-      timeLineStore.getBufferInformations().then(function(localData){
-
-        if (localData.length === 0) {
-          return;
-        }
-
-        $.each(localData, function(item, element){
-          timelineBlocks.render(element, newestInformation);
-          addImageInHightlightsContent(element);
-
-          if(!containsSomegallery) {
-            containsSomegallery = timeLineItemHasGalleryType(element);
-          }
-        });
-      });
-
-    } else {
-      timelineBlocks.render(socketIOData, newestInformation);
-      addImageInHightlightsContent(socketIOData);
-      containsSomegallery = timeLineItemHasGalleryType(socketIOData);
-    }
-
-    runGalleria(!!containsSomegallery);
-    timelineBlocks.hideBlocksOutsideViewport(CONFIG.OFFSET);
-
-    $(window).trigger('scroll');
-  }
-
   var socket = io.connect(CONFIG.URL_SOCKET_IO);
 
-  socket.on('burburinho', function (data) {
-    var $lastTimelineItem = $('.timeline-block:last-child');
-    var lastElementIsVisible = ($lastTimelineItem.size() > 0) ?
-                                timelineBlocks.elementIsVisibleOnViewport($lastTimelineItem, CONFIG.OFFSET) : true;
+  timeLineStore.getBufferInformations(CONFIG.URL_BUFFER_INFO).then(function(items){
 
-    loadOldestTimelineItems(lastElementIsVisible, true, data.message);
-  });
+    timeLineStore.setData(items);
 
-  var loadMoreItens =  function(){
-    var $lastTimelineItem = $('.timeline-block:last-child');
-    var lastElementIsVisible = ($lastTimelineItem.size() > 0) ?
-                                timelineBlocks.elementIsVisibleOnViewport($lastTimelineItem, CONFIG.OFFSET) :
-                                true;
+    if (items.length > 0) {
+      for(var i = 0; items.length > i; i++) {
+        timelineBlocks.render(items[i], true);
+        timeLineStore.remove(items[i]);
+      }
+    }
 
-    loadOldestTimelineItems(lastElementIsVisible);
-  };
-  $(window).load(function(){
+    socket.on('burburinho', function (data) {
+
+      timeLineStore.remove(data.message);
+
+      timelineBlocks.showBlocksInViewport(CONFIG.OFFSET);
+      timelineBlocks.render(data.message, true);
+      addImageInHightlightsContent(data.message);
+      containsSomegallery = timeLineItemHasGalleryType(data.message);
+
+      runGalleria(!!containsSomegallery);
+      timelineBlocks.hideBlocksOutsideViewport(CONFIG.OFFSET);
+    });
+
     $(window).on('scroll', function(){
-      loadMoreItens();
+      var containsSomegallery = false;
+      var $lastTimelineItem = $('.timeline-block:last-child');
+      var lastElementIsVisible = ($lastTimelineItem.size() > 0) ?
+                                  timelineBlocks.elementIsVisibleOnViewport($lastTimelineItem, CONFIG.OFFSET) :
+                                  true;
+
+      timelineBlocks.showBlocksInViewport(CONFIG.OFFSET);
+      if (!lastElementIsVisible) {
+        return;
+      }
+
+      var localData = timeLineStore.getLocalOldestInformations();
+
+      if (localData.length === 0) {
+        return;
+      }
+
+      $.each(localData, function(item, element){
+
+        timelineBlocks.render(element, false);
+        addImageInHightlightsContent(element);
+
+        if(!containsSomegallery) {
+          containsSomegallery = timeLineItemHasGalleryType(element);
+        }
+      });
+
+      runGalleria(!!containsSomegallery);
+      timelineBlocks.hideBlocksOutsideViewport(CONFIG.OFFSET);
+
     });
   });
 
-  loadMoreItens();
 });
