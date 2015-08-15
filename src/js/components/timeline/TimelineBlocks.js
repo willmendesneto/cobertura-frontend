@@ -19,6 +19,8 @@
       if(!!newerContent) {
         $('#timeline').prepend(newElement);
         showButtonNewContent();
+      } else if ( !$('.timeline-block:last-child')[0] ) {
+        $('#timeline').html(newElement);
       } else {
         $('.timeline-block:last-child').after(newElement);
       }

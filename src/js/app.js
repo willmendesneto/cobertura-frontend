@@ -32,7 +32,7 @@ $(document).ready(function() {
       $('.choose-photos').html(
         $('.choose-photos').html() +
         '<a class="photo" href="' + getOptmizedImageUrl(element.url) + '">' +
-          '<img src="' + getOptmizedImageUrl(element.url) + '" alt="' + element.content + '" width="90" height="60">' +
+          '<img class="highlight-photo" src="' + getOptmizedImageUrl(element.url) + '" alt="' + element.content + '" width="90" height="60">' +
         '</a>');
     }
   }
@@ -45,7 +45,8 @@ $(document).ready(function() {
 
     if (items.length > 0) {
       for(var i = 0; items.length > i; i++) {
-        timelineBlocks.render(items[i], true);
+        timelineBlocks.render(items[i], false);
+        addImageInHightlightsContent(items[i]);
         timeLineStore.remove(items[i]);
       }
     }

@@ -18,7 +18,9 @@
       '</time>' +
       '<article class="timeline-content video">' +
         '<h2 class="estado">' + data.local + '</h2>' +
-        '<iframe src="' + data.url + '"></iframe>' +
+        '<div class="video-wrapper">' +
+          '<iframe src="' + data.url + '"></iframe>' +
+        '</div>' +
         '<p>' + data.content + '</p>' +
       '</article>' +
     '</div>';
