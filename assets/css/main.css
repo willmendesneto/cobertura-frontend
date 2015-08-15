@@ -160,21 +160,18 @@ main > aside {
   right: -240px;
   width: 240px;
   box-sizing: border-box;
-  display: none;
   -webkit-transition: right 0.4s ease-in-out;
   -moz-transition: right 0.4s ease-in-out;
   -ms-transition: right 0.4s ease-in-out;
   -o-transition: right 0.4s ease-in-out;
   transition: right 0.4s ease-in-out; }
   main > aside.open {
-    right: 0;
-    display: block; }
+    right: 0; }
   @media only screen and (min-width: 768px) {
     main > aside {
       width: 40%;
       right: 0;
-      position: fixed;
-      display: block; } }
+      position: fixed; } }
 
 .container {
   min-height: 100vh;
@@ -500,21 +497,18 @@ main > aside {
   right: -240px;
   width: 240px;
   box-sizing: border-box;
-  display: none;
   -webkit-transition: right 0.4s ease-in-out;
   -moz-transition: right 0.4s ease-in-out;
   -ms-transition: right 0.4s ease-in-out;
   -o-transition: right 0.4s ease-in-out;
   transition: right 0.4s ease-in-out; }
   main > aside.open {
-    right: 0;
-    display: block; }
+    right: 0; }
   @media only screen and (min-width: 768px) {
     main > aside {
       width: 40%;
       right: 0;
-      position: fixed;
-      display: block; } }
+      position: fixed; } }
 
 main {
   background: linear-gradient(#fff, #ccc); }

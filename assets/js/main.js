@@ -850,10 +850,14 @@ $(document).ready(function() {
     timelineBlocks: null,
 
     render: function(data, newerContent) {
+      console.log('criando', data);
       var newElement = eval('window.TimeLineBlock' + capitalize(data.type) + '.render( data )');
+      console.log('criei', data);
 
       if(!!newerContent) {
+        console.log('appendando', data);
         $('#timeline').prepend(newElement);
+        console.log('appendei', data);
         showButtonNewContent();
       } else {
         $('.timeline-block:last-child').after(newElement);
@@ -1291,8 +1295,8 @@ $(document).ready(function() {
 
     if (items.length > 0) {
       for(var i = 0; items.length > i; i++) {
-        timelineBlocks.render(items[i], true);
-        timeLineStore.remove(items[i]);
+        timelineBlocks.render(items[0], true);
+        timeLineStore.remove(items[0]);
       }
     }
 
