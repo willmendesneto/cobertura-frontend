@@ -850,14 +850,10 @@ $(document).ready(function() {
     timelineBlocks: null,
 
     render: function(data, newerContent) {
-      console.log('criando', data);
       var newElement = eval('window.TimeLineBlock' + capitalize(data.type) + '.render( data )');
-      console.log('criei', data);
 
       if(!!newerContent) {
-        console.log('appendando', data);
         $('#timeline').prepend(newElement);
-        console.log('appendei', data);
         showButtonNewContent();
       } else {
         $('.timeline-block:last-child').after(newElement);

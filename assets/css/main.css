@@ -78,7 +78,8 @@ aside {
   display: table;
   float: right;
   right: 0;
-  position: absolute; }
+  position: absolute;
+  table-layout: fixed; }
   aside .scroll {
     min-height: 70vh; }
   aside .wrap {
