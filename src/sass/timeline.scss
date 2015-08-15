@@ -11,6 +11,12 @@
   min-height: 100vh;
   padding-bottom: 0;
 	margin: 0 auto;
+  min-height: 808px;
+
+
+	@include media-query(M) {
+    min-height: 100vh;
+  }
 
   img {
     max-width: 100%;
@@ -24,7 +30,7 @@
 }
 
 #timeline {
-  width: 85%;
+  width: 90%;
   float: left;
 	position: relative;
 	padding: 2em 1em;
