@@ -45,8 +45,8 @@ $(document).ready(function() {
 
     if (items.length > 0) {
       for(var i = 0; items.length > i; i++) {
-        timelineBlocks.render(items[i], true);
-        timeLineStore.remove(items[i]);
+        timelineBlocks.render(items[0], true);
+        timeLineStore.remove(items[0]);
       }
     }
 
