@@ -66,6 +66,9 @@
 .timeline-content.quote p {
   margin: 0; }
 
+.highlight-photo {
+  margin: 5px; }
+
 aside {
   padding-top: 5px;
   background: white;
