@@ -17,7 +17,11 @@
   &.video{
     iframe{
       width: 100%;
-      min-height: 400px;
+      min-height: auto;
+
+      @include media-query(M) {
+        min-height: 400px;
+      }
     }
   }
 
