@@ -2,8 +2,8 @@
   'use strict';
 
   var TimeLineBlockGallery = {};
-  
-  extend(TimeLineBlockGallery, window.ITimeLineBlock);
+
+  extend(TimeLineBlockGallery, window.AbstractTimeLineBlock);
 
   TimeLineBlockGallery.render = function(data) {
     var formattedDate = getFormattedDate(data.timestamp);
@@ -25,6 +25,7 @@
         '<section class="photos">' +
           images.join('') +
         '</section>' +
+        TimeLineBlockText.getSocialNetworkHTML(data) +
       '</article>' +
     '</div>';
   };

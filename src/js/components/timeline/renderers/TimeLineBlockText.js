@@ -3,7 +3,7 @@
   var TimeLineBlockText = {};
   var CONFIG = window.CONFIG;
 
-  extend(TimeLineBlockText, window.ITimeLineBlock);
+  extend(TimeLineBlockText, window.AbstractTimeLineBlock);
 
   TimeLineBlockText.render = function(data) {
     var formattedDate = getFormattedDate(data.timestamp);
@@ -19,18 +19,7 @@
       '<article class="timeline-content text">' +
         '<h2 class="estado">' + data.local + '</h2>' +
     '    <p>' + data.content + '</p>' +
-        '<div class="logos">'+
-          '<div class="social-small">'+
-            '<a target="_blank" href="//www.twitter.com/share?url=' + CONFIG.URL_COBERTURA + '&via=Brasil_de_Fato&related=Brasil_de_Fato&text=' + document.title + '" >' +
-              '<i class="fa fa-twitter"></i>'+
-            '</a>' +
-          '</div>'+
-          '<div class="social-small">' +
-            '<a href="//www.facebook.com/dialog/feed?app_id=' + CONFIG.FACEBOOK_ID + '&display=popup&href=' + CONFIG.URL_COBERTURA + '&redirect_uri=' + CONFIG.URL_COBERTURA + '&picture=' + CONFIG.URL_SOCIAL_SHARE_IMAGE + '&name=' + document.title + '&description=' + data.content + '&link=' + CONFIG.URL_COBERTURA + '" target="_blank">' +
-              '<i class="fa fa-facebook"></i>' +
-            '</a>' +
-          '</div>' +
-        '</div>' +
+        TimeLineBlockText.getSocialNetworkHTML(data) +
     '  </article>' +
     '</div>';
   };

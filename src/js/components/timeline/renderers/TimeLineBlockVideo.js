@@ -3,7 +3,7 @@
 
   var TimeLineBlockVideo = {};
 
-  extend(TimeLineBlockVideo, ITimeLineBlock);
+  extend(TimeLineBlockVideo, window.AbstractTimeLineBlock);
 
   TimeLineBlockVideo.render = function(data) {
     var formattedDate = getFormattedDate(data.timestamp);
@@ -22,6 +22,7 @@
           '<iframe src="' + data.url + '"></iframe>' +
         '</div>' +
         '<p>' + data.content + '</p>' +
+        TimeLineBlockText.getSocialNetworkHTML(data) +
       '</article>' +
     '</div>';
   };

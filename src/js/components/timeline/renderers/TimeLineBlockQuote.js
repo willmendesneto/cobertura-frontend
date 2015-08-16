@@ -3,7 +3,7 @@
 
   var TimeLineBlockQuote = {};
 
-  extend(TimeLineBlockQuote, ITimeLineBlock);
+  extend(TimeLineBlockQuote, window.AbstractTimeLineBlock);
 
   TimeLineBlockQuote.render = function(data) {
     var formattedDate = getFormattedDate(data.timestamp);
@@ -20,6 +20,7 @@
         '<h2 class="estado">' + data.local + '</h2>' +
       '  <img class="perfil" src="' + getOptmizedImageUrl(data.url) + '" alt="foto perfil"/>' +
       '  <p>' + data.content + '</p>' +
+      TimeLineBlockText.getSocialNetworkHTML(data) +
       '</article>' +
     '</div>';
   };
