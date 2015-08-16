@@ -115,6 +115,7 @@ aside {
       height: 125px;
       overflow-y: auto; } }
   aside .choose-photos > a {
+    float: left;
     text-decoration: none; }
     aside .choose-photos > a img {
       width: 90px;
