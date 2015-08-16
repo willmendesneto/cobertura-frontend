@@ -918,12 +918,6 @@ $(document).ready(function() {
 
 })(window);
 
-
-function RenderException(message) {
-   this.message = message;
-   this.name = 'RenderException';
-}
-
 (function(window) {
   'use strict';
 
@@ -936,7 +930,7 @@ function RenderException(message) {
   var CONFIG = {
     FACEBOOK_ID: 1500652936893411,
     OFFSET: 0.8,
-    URL_COBERTURA: 'http://cobertura.brasildefato.com.br/ato',
+    URL_COBERTURA: 'http://cobertura.brasildefato.com.br',
     URL_SOCIAL_SHARE_IMAGE: 'http://cobertura.brasildefato.com.br/assets/img/logo.jpg',
     URL_BUFFER_INFO: getSocketIOUrl()+'/api/burburinhos',
     URL_SOCKET_IO: getSocketIOUrl()
@@ -955,6 +949,12 @@ function RenderException(message) {
   }
 
 })(window);
+
+
+function RenderException(message) {
+   this.message = message;
+   this.name = 'RenderException';
+}
 
 (function(window) {
   'use strict';
