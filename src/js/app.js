@@ -28,19 +28,54 @@ $(document).ready(function() {
 
   timeLineStore.getBufferInformations(CONFIG.URL_BUFFER_INFO).then(function(items){
 
+    timeLineStore.setData(items);
+
     if (items.length > 0) {
       for(var i = 0; items.length > i; i++) {
         timelineBlocks.render(items[i], false);
         addImageInHightlightsContent(items[i]);
+        timeLineStore.remove(items[i]);
       }
     }
 
     socket.on('burburinho', function (data) {
+
+      timeLineStore.remove(data.message);
+
       timelineBlocks.showBlocksInViewport(CONFIG.OFFSET);
       timelineBlocks.render(data.message, true);
       addImageInHightlightsContent(data.message);
+
+      timelineBlocks.hideBlocksOutsideViewport(CONFIG.OFFSET);
     });
 
+    $(window).on('scroll', function(){
+      var containsSomegallery = false;
+      var $lastTimelineItem = $('.timeline-block:last-child');
+      var lastElementIsVisible = ($lastTimelineItem.size() > 0) ?
+                                  timelineBlocks.elementIsVisibleOnViewport($lastTimelineItem, CONFIG.OFFSET) :
+                                  true;
+
+      timelineBlocks.showBlocksInViewport(CONFIG.OFFSET);
+      if (!lastElementIsVisible) {
+        return;
+      }
+
+      var localData = timeLineStore.getLocalOldestInformations();
+
+      if (localData.length === 0) {
+        return;
+      }
+
+      $.each(localData, function(item, element){
+
+        timelineBlocks.render(element, false);
+        addImageInHightlightsContent(element);
+      });
+
+      timelineBlocks.hideBlocksOutsideViewport(CONFIG.OFFSET);
+
+    });
   });
 
 });
