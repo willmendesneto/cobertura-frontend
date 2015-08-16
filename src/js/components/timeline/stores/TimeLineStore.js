@@ -11,12 +11,16 @@
   function startFrom () {
     _currentPage += 1;
     var filteredData = [];
+
     if(_data.length > 0) {
-      for(var i = 0; _pageSize > i; i++) {
-        if (!!_data[i]){
-          filteredData.push(_data[i]);
-          _data.shift();
+      var item;
+      var i = 0;
+      while( _pageSize > i) {
+        item = _data[i];
+        if (!!item){
+          filteredData.push(item);
         }
+        ++i;
       }
     }
     return filteredData;

@@ -24,11 +24,11 @@ $(document).ready(function() {
     }
   }
 
-  var socket = io.connect(CONFIG.URL_SOCKET_IO);
-
   timeLineStore.getBufferInformations(CONFIG.URL_BUFFER_INFO).then(function(items){
 
     timeLineStore.setData(items);
+
+    items = timeLineStore.getLocalOldestInformations();
 
     if (items.length > 0) {
       for(var i = 0; items.length > i; i++) {
@@ -38,6 +38,9 @@ $(document).ready(function() {
       }
     }
 
+    items = null;
+
+    var socket = io.connect(CONFIG.URL_SOCKET_IO);
     socket.on('burburinho', function (data) {
 
       timeLineStore.remove(data.message);
@@ -71,6 +74,7 @@ $(document).ready(function() {
 
         timelineBlocks.render(element, false);
         addImageInHightlightsContent(element);
+        timeLineStore.remove(element);
       });
 
       timelineBlocks.hideBlocksOutsideViewport(CONFIG.OFFSET);
