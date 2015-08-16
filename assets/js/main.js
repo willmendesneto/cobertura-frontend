@@ -918,6 +918,12 @@ $(document).ready(function() {
 
 })(window);
 
+
+function RenderException(message) {
+   this.message = message;
+   this.name = 'RenderException';
+}
+
 (function(window) {
   'use strict';
 
@@ -949,12 +955,6 @@ $(document).ready(function() {
   }
 
 })(window);
-
-
-function RenderException(message) {
-   this.message = message;
-   this.name = 'RenderException';
-}
 
 (function(window) {
   'use strict';
