@@ -1,4 +1,8 @@
 gulp imagemin
 gulp build
 bundle exec jekyll build
+cd _site
+rm index.html
+cp cobertura-do-ato-16-de-agosto/index.html .
+cd ..
 gulp deploy
