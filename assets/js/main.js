@@ -981,7 +981,7 @@ function RenderException(message) {
           '</a>' +
         '</div>'+
         '<div class="social-small">' +
-          '<a href="//www.facebook.com/dialog/feed?app_id=' + CONFIG.FACEBOOK_ID + '&display=popup&href=' + CONFIG.URL_COBERTURA + '&redirect_uri=' + CONFIG.URL_COBERTURA + '&picture=' + imageToShare + '&name=' + document.title + '&description=' + data.content + '&link=' + CONFIG.URL_COBERTURA + '" target="_blank">' +
+          '<a href="//www.facebook.com/dialog/feed?app_id=' + CONFIG.FACEBOOK_ID + '&display=popup&href=' + CONFIG.URL_COBERTURA + '&redirect_uri=' + CONFIG.URL_COBERTURA + '&picture=' + imageToShare + '&name=' + document.title + '&description=' + escape(data.content) + '&link=' + CONFIG.URL_COBERTURA + '" target="_blank">' +
             '<i class="fa fa-facebook"></i>' +
           '</a>' +
         '</div>' +
