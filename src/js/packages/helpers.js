@@ -1,3 +1,8 @@
+ function strip(html) {
+     var tmp = document.createElement('div');
+     tmp.innerHTML = html;
+     return tmp.textContent||tmp.innerText;
+  }
 
   function getOptmizedImageUrl(url) {
     return !window.UA.isMobile() ? url : url.replace('_b.jpg', '_n.jpg');
