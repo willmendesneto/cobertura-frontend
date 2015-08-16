@@ -14,19 +14,6 @@ $(document).ready(function() {
 
   timelineBlocks.hideBlocksOutsideViewport(CONFIG.OFFSET);
 
-
-  function runGalleria(containsSomegallery) {
-    if (!!containsSomegallery) {
-      window.Galleria.run('.gallery section.photos:not(.gallery-on)');
-      $('.gallery section.photos:not(.gallery-on)').addClass('gallery-on');
-      containsSomegallery = false;
-    }
-  }
-
-  function timeLineItemHasGalleryType(element){
-    return element.type === 'gallery';
-  }
-
   function addImageInHightlightsContent(element) {
     if (element.type === 'photo') {
       $('.choose-photos').html(
@@ -58,9 +45,7 @@ $(document).ready(function() {
       timelineBlocks.showBlocksInViewport(CONFIG.OFFSET);
       timelineBlocks.render(data.message, true);
       addImageInHightlightsContent(data.message);
-      containsSomegallery = timeLineItemHasGalleryType(data.message);
 
-      runGalleria(!!containsSomegallery);
       timelineBlocks.hideBlocksOutsideViewport(CONFIG.OFFSET);
     });
 
@@ -86,13 +71,8 @@ $(document).ready(function() {
 
         timelineBlocks.render(element, false);
         addImageInHightlightsContent(element);
-
-        if(!containsSomegallery) {
-          containsSomegallery = timeLineItemHasGalleryType(element);
-        }
       });
 
-      runGalleria(!!containsSomegallery);
       timelineBlocks.hideBlocksOutsideViewport(CONFIG.OFFSET);
 
     });
