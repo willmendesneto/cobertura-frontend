@@ -918,35 +918,6 @@ $(document).ready(function() {
 
 })(window);
 
-(function(window) {
-  'use strict';
-
-  function getSocketIOUrl(){
-    return window.location.origin.indexOf('localhost') === -1 ?
-            '//burburinho.herokuapp.com' :
-            '//localhost:5000';
-  }
-
-  var CONFIG = {
-    OFFSET: 0.8,
-    URL_BUFFER_INFO: getSocketIOUrl()+'/api/burburinhos',
-    URL_SOCKET_IO: getSocketIOUrl()
-  };
-
-  if (typeof define !== 'undefined' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(function() {
-      return CONFIG;
-    });
-  } else if (typeof module !== 'undefined' && module.exports) {
-    module.exports = CONFIG.attach;
-    module.exports.CONFIG = CONFIG;
-  } else {
-    window.CONFIG = CONFIG;
-  }
-
-})(window);
-
 
 function RenderException(message) {
    this.message = message;
@@ -1041,7 +1012,7 @@ function RenderException(message) {
       '</time>' +
       '<article class="timeline-content photo">' +
         '<h2 class="estado">' + data.local + '</h2>' +
-        '<img src="' + data.url + '" alt="manifestação"/>' +
+        '<img src="' + getOptmizedImageUrl(data.url) + '" alt="manifestação"/>' +
         '<p>' + data.content + '</p>' +
       '</article>' +
     '</div>';
@@ -1063,7 +1034,7 @@ function RenderException(message) {
 
 (function(window) {
   'use strict';
-  
+
   var TimeLineBlockQuote = {};
 
   extend(TimeLineBlockQuote, ITimeLineBlock);
@@ -1081,7 +1052,7 @@ function RenderException(message) {
       '</time>' +
       '<article class="timeline-content quote">' +
         '<h2 class="estado">' + data.local + '</h2>' +
-      '  <img class="perfil" src="' + data.url + '" alt="foto perfil"/>' +
+      '  <img class="perfil" src="' + getOptmizedImageUrl(data.url) + '" alt="foto perfil"/>' +
       '  <p>' + data.content + '</p>' +
       '</article>' +
     '</div>';
@@ -1244,6 +1215,35 @@ function RenderException(message) {
     module.exports.TimeLineStore = TimeLineStore;
   } else {
     window.TimeLineStore = TimeLineStore;
+  }
+
+})(window);
+
+(function(window) {
+  'use strict';
+
+  function getSocketIOUrl(){
+    return window.location.origin.indexOf('localhost') === -1 ?
+            '//burburinho.herokuapp.com' :
+            '//localhost:5000';
+  }
+
+  var CONFIG = {
+    OFFSET: 0.8,
+    URL_BUFFER_INFO: getSocketIOUrl()+'/api/burburinhos',
+    URL_SOCKET_IO: getSocketIOUrl()
+  };
+
+  if (typeof define !== 'undefined' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define(function() {
+      return CONFIG;
+    });
+  } else if (typeof module !== 'undefined' && module.exports) {
+    module.exports = CONFIG.attach;
+    module.exports.CONFIG = CONFIG;
+  } else {
+    window.CONFIG = CONFIG;
   }
 
 })(window);
