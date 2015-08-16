@@ -4,5 +4,7 @@ bundle exec jekyll build
 cd _site
 rm index.html
 cp cobertura-do-ato-16-de-agosto/index.html .
+mkdir ato/
+cp index.html ato/index.html
 cd ..
 gulp deploy
