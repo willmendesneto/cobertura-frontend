@@ -43,12 +43,14 @@ aside {
   }
 
   .choose-photos {
+
     @include media-query(M) {
       height: 125px;
       overflow-y: auto;
     }
 
     & > a {
+      float: left;
       text-decoration: none;
 
       img {

@@ -19,7 +19,7 @@ $(document).ready(function() {
       $('.choose-photos').html(
         $('.choose-photos').html() +
         '<a class="photo" href="' + getOptmizedImageUrl(element.url) + '">' +
-          '<img class="highlight-photo" src="' + getOptmizedImageUrl(element.url) + '" alt="' + element.content + '" width="90" height="60">' +
+          '<img class="highlight-photo" src="' + getOptmizedImageUrl(element.url) + '" alt="' + element.content + '" width="90" height="auto">' +
         '</a>');
     }
   }
