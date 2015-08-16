@@ -13,6 +13,10 @@ aside {
   position: absolute;
   table-layout: fixed;
 
+	@include media-query(S) {
+    height: 100%;
+  }
+
   .scroll {
     min-height: 70vh;
   }
@@ -96,11 +100,3 @@ aside {
       margin: 15px 0;
     }
   }
-
-
-
-
-
-
-
-

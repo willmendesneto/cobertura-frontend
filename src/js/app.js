@@ -24,6 +24,15 @@ $(document).ready(function() {
     }
   }
 
+  function addTimelineBlockInDOM(localData) {
+    $.each(localData, function(item, element){
+
+      timelineBlocks.render(element, false);
+      addImageInHightlightsContent(element);
+      timeLineStore.remove(element);
+    });
+  }
+
   timeLineStore.getBufferInformations(CONFIG.URL_BUFFER_INFO).then(function(items){
 
     timeLineStore.setData(items);
@@ -31,11 +40,7 @@ $(document).ready(function() {
     items = timeLineStore.getLocalOldestInformations();
 
     if (items.length > 0) {
-      for(var i = 0; items.length > i; i++) {
-        timelineBlocks.render(items[i], false);
-        addImageInHightlightsContent(items[i]);
-        timeLineStore.remove(items[i]);
-      }
+      addTimelineBlockInDOM(items);
     }
 
     items = null;
@@ -52,34 +57,55 @@ $(document).ready(function() {
       timelineBlocks.hideBlocksOutsideViewport(CONFIG.OFFSET);
     });
 
-    $(window).on('scroll', function(){
-      var containsSomegallery = false;
-      var $lastTimelineItem = $('.timeline-block:last-child');
-      var lastElementIsVisible = ($lastTimelineItem.size() > 0) ?
-                                  timelineBlocks.elementIsVisibleOnViewport($lastTimelineItem, CONFIG.OFFSET) :
-                                  true;
+    if (!window.UA.isMobile()) {
 
-      timelineBlocks.showBlocksInViewport(CONFIG.OFFSET);
-      if (!lastElementIsVisible) {
-        return;
-      }
+      $('.button-load-more').remove();
 
-      var localData = timeLineStore.getLocalOldestInformations();
+      $(window).on('scroll', function(){
+        var containsSomegallery = false;
+        var $lastTimelineItem = $('.timeline-block:last-child');
+        var lastElementIsVisible = ($lastTimelineItem.size() > 0) ?
+                                    timelineBlocks.elementIsVisibleOnViewport($lastTimelineItem, CONFIG.OFFSET) :
+                                    true;
 
-      if (localData.length === 0) {
-        return;
-      }
+        timelineBlocks.showBlocksInViewport(CONFIG.OFFSET);
+        if (!lastElementIsVisible) {
+          return;
+        }
 
-      $.each(localData, function(item, element){
+        var localData = timeLineStore.getLocalOldestInformations();
 
-        timelineBlocks.render(element, false);
-        addImageInHightlightsContent(element);
-        timeLineStore.remove(element);
+        if (localData.length === 0) {
+          return;
+        }
+
+        addTimelineBlockInDOM(localData);
+
+        timelineBlocks.hideBlocksOutsideViewport(CONFIG.OFFSET);
+
       });
 
-      timelineBlocks.hideBlocksOutsideViewport(CONFIG.OFFSET);
+    } else {
 
-    });
+      $('.button-load-more').click( function() {
+          var $self = $(this);
+          $self.addClass('m-progress');
+
+          timelineBlocks.showBlocksInViewport(CONFIG.OFFSET);
+
+          var localData = timeLineStore.getLocalOldestInformations();
+
+          if (localData.length === 0) {
+            $self.attr('disabled', true).removeClass('m-progress');
+            return;
+          }
+
+          addTimelineBlockInDOM(localData);
+
+          $self.removeClass('m-progress');
+
+        });
+      }
   });
 
 });
