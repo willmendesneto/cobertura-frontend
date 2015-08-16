@@ -1,6 +1,6 @@
 (function(window) {
   'use strict';
-  
+
   var TimeLineBlockQuote = {};
 
   extend(TimeLineBlockQuote, ITimeLineBlock);
@@ -18,7 +18,7 @@
       '</time>' +
       '<article class="timeline-content quote">' +
         '<h2 class="estado">' + data.local + '</h2>' +
-      '  <img class="perfil" src="' + data.url + '" alt="foto perfil"/>' +
+      '  <img class="perfil" src="' + getOptmizedImageUrl(data.url) + '" alt="foto perfil"/>' +
       '  <p>' + data.content + '</p>' +
       '</article>' +
     '</div>';

@@ -18,7 +18,7 @@
       '</time>' +
       '<article class="timeline-content photo">' +
         '<h2 class="estado">' + data.local + '</h2>' +
-        '<img src="' + data.url + '" alt="manifestação"/>' +
+        '<img src="' + getOptmizedImageUrl(data.url) + '" alt="manifestação"/>' +
         '<p>' + data.content + '</p>' +
       '</article>' +
     '</div>';
