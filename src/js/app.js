@@ -33,6 +33,48 @@ $(document).ready(function() {
     });
   }
 
+  var scrollEventToLargeScreen =  function(){
+    var containsSomegallery = false;
+    var $lastTimelineItem = $('.timeline-block:last-child');
+    var lastElementIsVisible = ($lastTimelineItem.size() > 0) ?
+      timelineBlocks.elementIsVisibleOnViewport($lastTimelineItem, CONFIG.OFFSET) :
+      true;
+
+    timelineBlocks.showBlocksInViewport(CONFIG.OFFSET);
+    if (!lastElementIsVisible) {
+      return;
+    }
+
+    var localData = timeLineStore.getLocalOldestInformations();
+
+    if (localData.length === 0) {
+      return;
+    }
+
+    addTimelineBlockInDOM(localData);
+
+    timelineBlocks.hideBlocksOutsideViewport(CONFIG.OFFSET);
+  };
+
+  var clickEventToMobileScreen = function(element){
+    var $self = $(element);
+    $self.addClass('m-progress');
+
+    timelineBlocks.showBlocksInViewport(CONFIG.OFFSET);
+
+    var localData = timeLineStore.getLocalOldestInformations();
+
+    if (localData.length === 0) {
+      $self.attr('disabled', true).removeClass('m-progress');
+      return;
+    }
+
+    addTimelineBlockInDOM(localData);
+
+    $self.removeClass('m-progress');
+  };
+
+
   timeLineStore.getBufferInformations(CONFIG.URL_BUFFER_INFO).then(function(items){
 
     timeLineStore.setData(items);
@@ -58,54 +100,11 @@ $(document).ready(function() {
     });
 
     if (!window.UA.isMobile()) {
-
       $('.button-load-more').remove();
-
-      $(window).on('scroll', function(){
-        var containsSomegallery = false;
-        var $lastTimelineItem = $('.timeline-block:last-child');
-        var lastElementIsVisible = ($lastTimelineItem.size() > 0) ?
-                                    timelineBlocks.elementIsVisibleOnViewport($lastTimelineItem, CONFIG.OFFSET) :
-                                    true;
-
-        timelineBlocks.showBlocksInViewport(CONFIG.OFFSET);
-        if (!lastElementIsVisible) {
-          return;
-        }
-
-        var localData = timeLineStore.getLocalOldestInformations();
-
-        if (localData.length === 0) {
-          return;
-        }
-
-        addTimelineBlockInDOM(localData);
-
-        timelineBlocks.hideBlocksOutsideViewport(CONFIG.OFFSET);
-
-      });
-
+      $(window).on('scroll', scrollEventToLargeScreen);
     } else {
-
-      $('.button-load-more').click( function() {
-          var $self = $(this);
-          $self.addClass('m-progress');
-
-          timelineBlocks.showBlocksInViewport(CONFIG.OFFSET);
-
-          var localData = timeLineStore.getLocalOldestInformations();
-
-          if (localData.length === 0) {
-            $self.attr('disabled', true).removeClass('m-progress');
-            return;
-          }
-
-          addTimelineBlockInDOM(localData);
-
-          $self.removeClass('m-progress');
-
-        });
-      }
+      $('.button-load-more').click( clickEventToMobileScreen );
+    }
   });
 
 });
