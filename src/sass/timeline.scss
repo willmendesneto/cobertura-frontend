@@ -13,20 +13,13 @@
   line-height: 50px;
   width: 86%;
   font-size: 20px;
-  margin-left: 95px;
+  margin-left: 0;
   font-weight: 400;
   cursor: pointer;
-
-	@include media-query(S) {
-    width: 75%;
-    margin-left: 24%;
-  }
-
-	@include media-query(M) {
-    width: 75%;
-    margin-left: 24%;
-  }
-
+  color: white;
+  background-color: #891A1C;
+  font-weight: 800;
+  width: 100%;
 }
 @-webkit-keyframes ld {
   0%   { transform: rotate(0deg) scale(1); }
