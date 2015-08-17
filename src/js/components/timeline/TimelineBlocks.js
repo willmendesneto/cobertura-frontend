@@ -7,6 +7,10 @@
     }
   };
 
+  function getTimelineRenderer(type) {
+    return window['TimeLineBlock' + capitalize(type) ];
+  }
+
   var TimelineBlocks = {};
 
   TimelineBlocks = {
@@ -14,7 +18,7 @@
     timelineBlocks: null,
 
     render: function(data, newerContent) {
-      var newElement = eval('window.TimeLineBlock' + capitalize(data.type) + '.render( data )');
+      var newElement = getTimelineRenderer(data.type).render( data );
 
       if(!!newerContent) {
         $('#timeline').prepend(newElement);
