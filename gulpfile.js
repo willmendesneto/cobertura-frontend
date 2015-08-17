@@ -9,7 +9,10 @@ var gulp         = require('gulp'),
     bourbon     = require('node-bourbon').includePaths,
     cp          = require('child_process'),
     os          = require('os'),
-    isWindows   = os.type() == 'Windows_NT';
+    _           = require('lodash'),
+    isWindows   = os.type() == 'Windows_NT',
+    karma       = require('karma').server,
+    karmaConf   = require('./karma.conf.js');
 
 var messages = {
 	jekyllBuild: '<span style="color: grey">Running:</span> $ jekyll build'
@@ -98,6 +101,11 @@ gulp.task('imagemin', function() {
     return gulp.src('src/img/**/*.{jpg,png,gif}')
     .pipe(plumber())
     .pipe(gulp.dest('assets/img/'));
+});
+
+
+gulp.task('test', function(done) {
+  karma.start(_.assign({}, karmaConf, { singleRun: true }), done);
 });
 
 /**
