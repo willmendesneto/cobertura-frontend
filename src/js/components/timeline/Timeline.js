@@ -51,8 +51,8 @@
   var addBuzzToScreen = function(buzzes) {
     var index;
     for (index = 0; index < buzzes.length; index++) {
-      blocks.render(element, false);
-      store.remove(element);
+      blocks.render(buzzes[index], false);
+      store.remove(buzzes[index]);
     }
   }
 
