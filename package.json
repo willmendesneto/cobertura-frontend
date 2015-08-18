@@ -2,32 +2,38 @@
   "version": "1.0.0",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "./node_modules/.bin/gulp test"
+    "test": "./node_modules/.bin/gulp test",
+    "e2e": "./node_modules/.bin/protractor protractor.conf.js",
+    "updateWebBrowser": "./node_modules/protractor/bin/webdriver-manager update",
+    "startWebBrowser": "./node_modules/protractor/bin/webdriver-manager start"
   },
   "license": "ISC",
   "devDependencies": {
+    "async": "^1.4.2",
     "browser-sync": "^2.8.2",
+    "event-stream": "^3.3.1",
     "grunt": "^0.4.5",
+    "gulp": "^3.8.11",
     "gulp-concat": "^2.6.0",
     "gulp-gh-pages": "^0.5.2",
     "gulp-imagemin": "^2.3.0",
+    "gulp-jshint": "^1.9.2",
     "gulp-plumber": "^1.0.1",
+    "gulp-protractor": "^1.0.0",
     "gulp-sass": "^2.0.4",
     "gulp-shell": "^0.4.2",
     "gulp-uglify": "^1.2.0",
-    "jasmine-core": "^2.3.4",
-    "node-bourbon": "^4.2.3",
-    "phantomjs": "^1.9.18",
-    "map-stream": "0.0.5",
-    "gulp": "^3.8.11",
-    "gulp-jshint": "^1.9.2",
     "gulp-util": "^3.0.4",
+    "jasmine-core": "^2.3.4",
     "jshint-stylish": "^1.0.1",
     "karma": "^0.12.28",
     "karma-coverage": "^0.2.7",
     "karma-jasmine": "^0.3.3",
     "karma-phantomjs-launcher": "^0.1.4",
-    "lodash": "^3.3.1"
+    "lodash": "^3.3.1",
+    "map-stream": "0.0.5",
+    "node-bourbon": "^4.2.3",
+    "phantomjs": "^1.9.18"
   },
   "dependencies": {
     "grunt-cli": "^0.1.13"

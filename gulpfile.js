@@ -1,22 +1,36 @@
-var gulp         = require('gulp'),
-    plumber     = require('gulp-plumber'),
-    browserSync = require('browser-sync').create(),
-    uglify      = require('gulp-uglify'),
-    concat      = require('gulp-concat'),
-    imagemin    = require('gulp-imagemin'),
-    ghPages     = require('gulp-gh-pages'),
-    sass        = require('gulp-sass'),
-    bourbon     = require('node-bourbon').includePaths,
-    cp          = require('child_process'),
-    os          = require('os'),
-    _           = require('lodash'),
-    isWindows   = os.type() == 'Windows_NT',
-    karma       = require('karma').server,
-    karmaConf   = require('./karma.conf.js');
+var gulp          = require('gulp'),
+    protractor    = require('gulp-protractor').protractor
+    plumber       = require('gulp-plumber'),
+    browserSync   = require('browser-sync').create(),
+    uglify        = require('gulp-uglify'),
+    concat        = require('gulp-concat'),
+    imagemin      = require('gulp-imagemin'),
+    ghPages       = require('gulp-gh-pages'),
+    sass          = require('gulp-sass'),
+    bourbon       = require('node-bourbon').includePaths,
+    cp            = require('child_process'),
+    os            = require('os'),
+    _             = require('lodash'),
+    isWindows     = os.type() === 'Windows_NT',
+    karma         = require('karma').server,
+    path          = require('path'),
+    childProcess  = require('child_process'),
+    karmaConf     = require('./karma.conf.js');
+
+var CONFIG = {
+  PROTRACTOR_FILE: 'protractor.conf.js'
+};
 
 var messages = {
 	jekyllBuild: '<span style="color: grey">Running:</span> $ jekyll build'
 };
+
+function getProtractorBinary(binaryName){
+    var winExt = /^win/.test(process.platform)? '.cmd' : '';
+    var pkgPath = require.resolve('protractor');
+    var protractorDir = path.resolve(path.join(path.dirname(pkgPath), '..', 'bin'));
+    return path.join(protractorDir, '/'+binaryName+winExt);
+}
 
 /**
  * Build the Jekyll Site
@@ -108,6 +122,18 @@ gulp.task('test', function(done) {
   karma.start(_.assign({}, karmaConf, { singleRun: true }), done);
 });
 
+gulp.task('protractor-install', function(done){
+    childProcess.spawn(getProtractorBinary('webdriver-manager'), ['update'], {
+        stdio: 'inherit'
+    }).once('close', done);
+});
+
+gulp.task('protractor-run', function (done) {
+    childProcess.spawn(getProtractorBinary('protractor'), [CONFIG.PROTRACTOR_FILE], {
+        stdio: 'inherit'
+    }).once('close', done);
+});
+
 /**
  * Watch stylus files for changes & recompile
  * Watch html/md files, run jekyll & reload BrowserSync
@@ -115,6 +141,7 @@ gulp.task('test', function(done) {
 gulp.task('watch', function () {
     gulp.watch('src/js/**/*.js', ['js']);
     gulp.watch('src/json/**/*.json', ['json']);
+    gulp.watch('test/spec/**/*.js', ['test']);
     gulp.watch('src/img/**/*.{jpg,png,gif}', ['imagemin']);
     gulp.watch('src/sass/**/*.scss', ['sass']);
     gulp.watch(['*.html','index.html', '_includes/*.html', '_layouts/*.html', '_posts/*', '**/*.md', '**/*.html'], ['jekyll-rebuild']);
