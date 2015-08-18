@@ -14,7 +14,7 @@
     return true;
   };
 
-  var scrollEvent =  function(){
+  var scrollEvent = function(){
     blocks.showBlocksInViewport();
     if (!lastElementIsVisible()) {
       return;
@@ -52,44 +52,56 @@
   var addBuzzToScreen = function(buzzes) {
     var index, buzzesLength = buzzes.length;
     for (index = 0; index < buzzesLength; index++) {
-      blocks.render(buzzes[index], false);
-      store.remove(buzzes[index]);
-      $(document).trigger('addedBuzzInTimeline', buzzes[index]);
+      renderBuzzInScreen(buzzes[index], false);
     }
+  };
+
+  var triggerBuzzEvent = function (buzz) {
+    $(document).trigger('addedBuzzInTimeline', buzz);
+  };
+
+  var renderBuzzInScreen = function(buzz, isANewElement) {
+    blocks.render(buzz, isANewElement);
+    store.remove(buzz);
+    triggerBuzzEvent(buzz);
   };
 
   var addBuzzToStore = function(data){
     var buzz = data.message;
     store.remove(buzz);
 
-    store.showBlocksInViewport();
-    store.render(buzz, true);
-    addImageInHightlightsContent(buzz);
+    blocks.showBlocksInViewport();
+    renderBuzzInScreen(buzz, true);
 
     blocks.hideBlocksOutsideViewport();
   };
 
   var firstLoad = function(buzzes){
+
+    var firstRenderToLocalBuzzes = function() {
+      var localBuzzes = store.getLocalOldestInformations();
+
+      if (localBuzzes.length > 0) {
+        addBuzzToScreen(localBuzzes);
+      }
+    };
+
     store.setData(buzzes);
-    buzzes = store.getLocalOldestInformations();
-
-    if (buzzes.length > 0) {
-      addBuzzToScreen(buzzes);
-    }
-
-    buzzes = null;
+    firstRenderToLocalBuzzes();
 
     var socket = io.connect(window.CONFIG.URL_SOCKET_IO);
     socket.on('burburinho', addBuzzToStore);
 
-    if (!window.UA.isMobile()) {
-      $('.button-load-more').remove();
-      $(window).on('scroll', scrollEvent );
-    } else {
-      $('.button-load-more').click( clickEvent );
-    }
-  };
+    var addEventToMobile = function() {
+      $('.button-load-more').on('click', clickEvent ).removeClass('is-hidden');
+    };
 
+    var addEventToDesktop = function() {
+      $(window).on('scroll', scrollEvent );
+    };
+
+    window.UA.isMobile() ? addEventToMobile() : addEventToDesktop();
+  };
 
   var Timeline = {};
   Timeline = {
@@ -106,9 +118,6 @@
       return this;
     }
   };
-
-
-
 
   if (typeof define !== 'undefined' && define.amd) {
     // AMD. Register as an anonymous module.

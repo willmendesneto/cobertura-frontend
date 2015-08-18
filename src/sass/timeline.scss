@@ -186,9 +186,10 @@
   box-shadow:         0px 2px 1px rgba(50, 50, 50, 0.75);
   cursor: pointer;
 
-  &.is-hidden {
-    visibility: hidden;
-  }
+}
+
+.is-hidden {
+  visibility: hidden !important;
 }
 
 @include keyframes(bounce-1) {
