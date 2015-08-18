@@ -12,11 +12,10 @@
   }
 
   var TimelineBlocks = {};
-
+  var defaultOffset = 0.8;
   TimelineBlocks = {
 
     timelineBlocks: null,
-
     render: function(data, newerContent) {
       var newElement = getTimelineRenderer(data.type).render( data );
 
@@ -35,11 +34,11 @@
       return TimelineBlocks.timelineBlocks;
     },
 
-    elementIsVisibleOnViewport: function(element, defaultOffset) {
+    elementIsVisibleOnViewport: function(element) {
       return element.offset().top <= $(window).scrollTop()+$(window).height() * defaultOffset;
     },
 
-    elementIsNotVisibleOnViewport: function(element, defaultOffset) {
+    elementIsNotVisibleOnViewport: function(element) {
       return element.offset().top > $(window).scrollTop()+$(window).height() * defaultOffset;
     },
 
