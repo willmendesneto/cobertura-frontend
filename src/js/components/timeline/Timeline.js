@@ -4,10 +4,11 @@
   var store = window.TimeLineStore;
   var blocks = window.TimelineBlocks;
 
+
   var lastElementIsVisible = function(){
     var $lastTimelineItem = $('.timeline-block:last-child');
     if ($lastTimelineItem.size() > 0){
-      return store.elementIsVisibleOnViewport($lastTimelineItem, window.CONFIG.OFFSET);
+      return blocks.elementIsVisibleOnViewport($lastTimelineItem, window.CONFIG.OFFSET);
     }
 
     return true;
@@ -34,7 +35,7 @@
     var $self = $(element);
     $self.addClass('m-progress');
 
-    store.showBlocksInViewport(window.CONFIG.OFFSET);
+    blocks.showBlocksInViewport(window.CONFIG.OFFSET);
 
     var buzzes = store.getLocalOldestInformations();
 
@@ -43,18 +44,19 @@
       return;
     }
 
-    addTimelineBlockInDOM(buzzes);
+    addBuzzToScreen(buzzes);
 
     $self.removeClass('m-progress');
   };
 
   var addBuzzToScreen = function(buzzes) {
-    var index;
-    for (index = 0; index < buzzes.length; index++) {
+    var index, buzzesLength = buzzes.length;
+    for (index = 0; index < buzzesLength; index++) {
       blocks.render(buzzes[index], false);
       store.remove(buzzes[index]);
+      $(document).trigger('addedBuzzInTimeline', buzzes[index]);
     }
-  }
+  };
 
   var addBuzzToStore = function(data){
     var buzz = data.message;
@@ -98,6 +100,10 @@
       blocks.hideBlocksOutsideViewport(window.CONFIG.OFFSET);
       store.getBufferInformations(window.CONFIG.URL_BUFFER_INFO).then(firstLoad);
       return true;
+    },
+    onAddBuzz: function(callback) {
+      $(document).on('addedBuzzInTimeline', callback);
+      return this;
     }
   };
 

@@ -8,16 +8,19 @@ $(document).ready(function() {
     return false;
   });
 
-  function addImageInHightlightsContent(element) {
-    if (element.type === 'photo') {
+
+  var addedBuzzInTimeline = function (event, buzz) {
+
+    if (buzz.type === 'photo') {
       $('.choose-photos').html(
         $('.choose-photos').html() +
-        '<a class="photo" href="' + getOptmizedImageUrl(element.url) + '">' +
-          '<img class="highlight-photo" src="' + getOptmizedImageUrl(element.url) + '" alt="' + element.content + '" width="90" height="auto">' +
+        '<a class="photo" href="' + getOptmizedImageUrl(buzz.url) + '">' +
+          '<img class="highlight-photo" src="' + getOptmizedImageUrl(buzz.url) + '" alt="' + buzz.content + '" width="90" height="auto">' +
         '</a>');
     }
-  }
+  };
 
-  Timeline.init();
+  Timeline.onAddBuzz(addedBuzzInTimeline)
+          .init();
 
 });
