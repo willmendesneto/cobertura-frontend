@@ -85,7 +85,7 @@ gulp.task('js', function(){
 		])
 		.pipe(plumber())
 		.pipe(concat('main.js'))
-		.pipe(uglify())
+		//.pipe(uglify())
 		.pipe(gulp.dest('assets/js/'))
 		.pipe(gulp.dest('_site/assets/js/'))
 });

@@ -30,6 +30,7 @@
 
     setData: function(data) {
       _data = data;
+      return true;
     },
 
     remove: function(item) {
