@@ -321,23 +321,6 @@
 }
 
 @include media-query(S) {
-  main > aside {
-    position: fixed !important;
-  }
-
-  aside .know-more p {
-      font-size: 0.7em;
-  }
-  aside .know-more {
-    height: 45vh !important;
-    overflow-y: auto;
-  }
-
-  aside section + section {
-    height: 35vh !important;
-    overflow-y: auto;
-    margin-top: 10px;
-  }
 
   .social .fa {
     width: 25px;

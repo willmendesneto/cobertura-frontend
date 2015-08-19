@@ -7,6 +7,8 @@
             '//localhost:5000';
   }
 
+  var offline = window.offline || false;
+
   var CONFIG = {
     FACEBOOK_ID: 1500652936893411,
     OFFSET: 0.8,
@@ -15,6 +17,10 @@
     URL_BUFFER_INFO: getSocketIOUrl()+'/api/buzzes',
     URL_SOCKET_IO: getSocketIOUrl()
   };
+
+  if(!!offline){
+    CONFIG.URL_BUFFER_INFO = '/assets/json/'+offline.data;
+  }
 
   if (typeof define !== 'undefined' && define.amd) {
     // AMD. Register as an anonymous module.
