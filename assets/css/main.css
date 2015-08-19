@@ -96,13 +96,16 @@ aside {
   display: table;
   float: right;
   right: 0;
-  position: absolute;
+  position: fixed;
   table-layout: fixed; }
   @media only screen and (min-width: 320px) {
     aside {
       height: 100%; } }
   aside .scroll {
-    min-height: 70vh; }
+    min-height: 70vh;
+    height: 90%;
+    display: flex;
+    flex-direction: column; }
   aside .wrap {
     min-height: 100%;
     margin: 0 auto -10vh; }
@@ -112,24 +115,39 @@ aside {
     padding: 0 1em; }
     aside section + section {
       margin-top: 10px; }
-  aside .know-more p {
-    font-style: italic;
-    font-weight: 200;
-    text-align: center; }
+  aside .know-more {
+    height: 45vh;
+    overflow-y: auto; }
+    aside .know-more p {
+      font-style: italic;
+      font-weight: 200;
+      text-align: center;
+      font-size: 0.7em; }
+  aside section + section {
+    height: 35vh;
+    overflow-y: auto;
+    margin-top: 10px; }
   @media only screen and (min-width: 768px) {
-    aside .choose-photos {
-      height: 125px;
-      overflow-y: auto; } }
-  aside .choose-photos > a {
-    float: left;
-    text-decoration: none; }
-    aside .choose-photos > a img {
-      width: 90px;
-      opacity: 1;
-      background-color: rgba(0, 0, 0, 0.55); }
-      aside .choose-photos > a img:hover {
-        cursor: pointer;
-        opacity: 0.3; }
+    aside .know-more {
+      height: auto; }
+    aside section + section {
+      height: auto; } }
+  aside .choose-photos {
+    flex-grow: 1; }
+    @media only screen and (min-width: 768px) {
+      aside .choose-photos {
+        height: 125px;
+        overflow-y: auto; } }
+    aside .choose-photos > a {
+      float: left;
+      text-decoration: none; }
+      aside .choose-photos > a img {
+        width: 90px;
+        opacity: 1;
+        background-color: rgba(0, 0, 0, 0.55); }
+        aside .choose-photos > a img:hover {
+          cursor: pointer;
+          opacity: 0.3; }
 
 .title {
   margin-top: 0;
@@ -186,7 +204,6 @@ main.container {
       display: none; } }
 
 main > aside {
-  position: absolute;
   right: -240px;
   width: 240px;
   box-sizing: border-box;
@@ -365,8 +382,9 @@ main > aside {
   -moz-box-shadow: 0px 2px 1px rgba(50, 50, 50, 0.75);
   box-shadow: 0px 2px 1px rgba(50, 50, 50, 0.75);
   cursor: pointer; }
-  .button-new-content.is-hidden {
-    visibility: hidden; }
+
+.is-hidden {
+  visibility: hidden !important; }
 
 @-webkit-keyframes bounce-1 {
   0% {
@@ -495,6 +513,14 @@ main > aside {
     -moz-animation: bounce-2-inverse 0.6s;
     animation: bounce-2-inverse 0.6s; } }
 
+@media only screen and (min-width: 320px) {
+  .social .fa {
+    width: 25px;
+    height: 25px;
+    font-size: 1em; }
+  .title.title-primary, .title.title-secundary {
+    font-size: 1em; } }
+
 @-webkit-keyframes bounce-2 {
   0% {
     opacity: 0;
@@ -611,7 +637,6 @@ main.container {
       display: none; } }
 
 main > aside {
-  position: absolute;
   right: -240px;
   width: 240px;
   box-sizing: border-box;
