@@ -6,11 +6,11 @@ baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://cobertura.brasildefato.com.br/"
 
 # Build settings
-markdown: kramdown
+markdown: redcarpet
 highlighter: pygments
 permalink: /:title/
 
 # exclude my node related stuff
-exclude: ['package.json', 'src', 'node_modules', 'gulpfile.js']
+exclude: ['package.json', 'src', 'node_modules', 'gulpfile.js', 'coverage', 'karma.conf.js', 'protractor.conf.js', 'test/','deploy', 'Gemfile', 'Gemfile.lock']
 
 collections:
