@@ -10,7 +10,7 @@ aside {
   display: table;
   float: right;
   right: 0;
-  position: absolute;
+  position: fixed;
   table-layout: fixed;
 
 	@include media-query(S) {
@@ -19,6 +19,9 @@ aside {
 
   .scroll {
     min-height: 70vh;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
   }
 
   .wrap {
@@ -39,15 +42,35 @@ aside {
   }
 
   .know-more {
+    height: 45vh;
+    overflow-y: auto;
     p {
       font-style: italic;
       font-weight: 200;
       text-align:  center;
+      font-size: 0.7em;
+    }
+  }
+
+  section + section {
+    height: 35vh;
+    overflow-y: auto;
+    margin-top: 10px;
+  }
+
+  @include media-query(M) {
+
+    .know-more {
+      height: auto;
+    }
+
+    section + section {
+      height: auto;
     }
   }
 
   .choose-photos {
-
+    flex-grow: 1;
     @include media-query(M) {
       height: 125px;
       overflow-y: auto;
