@@ -103,7 +103,7 @@ aside {
       height: 100%; } }
   aside .scroll {
     min-height: 70vh;
-    height: 90%;
+    height: 80%;
     display: flex;
     flex-direction: column; }
   aside .wrap {
