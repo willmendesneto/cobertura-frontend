@@ -97,6 +97,7 @@ gulp.task('json', function(){
     return gulp.src('src/json/**/*.json')
     .pipe(plumber())
     .pipe(gulp.dest('assets/json/'))
+		.pipe(gulp.dest('_site/assets/json/'))
 });
 
 /**
