@@ -90,7 +90,7 @@
     firstRenderToLocalBuzzes();
 
     var socket = io.connect(window.CONFIG.URL_SOCKET_IO);
-    socket.on('burburinho', addBuzzToStore);
+    socket.on('buzz', addBuzzToStore);
 
     var addEventToMobile = function() {
       $('.button-load-more').on('click', clickEvent ).removeClass('is-hidden');

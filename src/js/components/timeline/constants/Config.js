@@ -12,7 +12,7 @@
     OFFSET: 0.8,
     URL_COBERTURA: 'http://cobertura.brasildefato.com.br',
     URL_SOCIAL_SHARE_IMAGE: 'http://cobertura.brasildefato.com.br/assets/img/logo.jpg',
-    URL_BUFFER_INFO: getSocketIOUrl()+'/api/burburinhos',
+    URL_BUFFER_INFO: getSocketIOUrl()+'/api/buzzes',
     URL_SOCKET_IO: getSocketIOUrl()
   };
 
