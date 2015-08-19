@@ -20,7 +20,8 @@ $(document).ready(function() {
     }
   };
 
+  var offline  = window.offline || false;
   Timeline.onAddBuzz(addedBuzzInTimeline)
-          .init();
+          .init(offline);
 
 });

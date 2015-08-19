@@ -76,22 +76,24 @@
     blocks.hideBlocksOutsideViewport();
   };
 
-  var firstLoad = function(buzzes){
-
-    var firstRenderToLocalBuzzes = function() {
-      var localBuzzes = store.getLocalOldestInformations();
-
-      if (localBuzzes.length > 0) {
-        addBuzzToScreen(localBuzzes);
-      }
-    };
-
+  var loadBuzzesFromServer = function(buzzes){
     store.setData(buzzes);
-    firstRenderToLocalBuzzes();
+  };
 
+  var loadRenderToLocalBuzzes = function() {
+    var localBuzzes = store.getLocalOldestInformations();
+
+    if (localBuzzes.length > 0) {
+      addBuzzToScreen(localBuzzes);
+    }
+  };
+
+  var loadSocketIO = function(buzzes){
     var socket = io.connect(window.CONFIG.URL_SOCKET_IO);
     socket.on('burburinho', addBuzzToStore);
+  };
 
+  var loadEvents = function(){
     var addEventToMobile = function() {
       $('.button-load-more').on('click', clickEvent ).removeClass('is-hidden');
     };
@@ -103,14 +105,23 @@
     window.UA.isMobile() ? addEventToMobile() : addEventToDesktop();
   };
 
+
   var Timeline = {};
   Timeline = {
-    init: function(){
+    init: function(offline){
       store = window.TimeLineStore;
       blocks = window.TimelineBlocks;
 
+
       blocks.hideBlocksOutsideViewport();
-      store.getBufferInformations().then(firstLoad);
+
+      if(!!offline){
+        store.getBufferInformations()
+            .done(loadBuzzesFromServer, loadRenderToLocalBuzzes, loadEvents);
+      }else{
+        store.getBufferInformations()
+            .done(loadBuzzesFromServer, loadRenderToLocalBuzzes, loadSocketIO, loadEvents);
+      }
       return true;
     },
     onAddBuzz: function(callback) {
