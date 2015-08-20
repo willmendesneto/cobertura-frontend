@@ -90,7 +90,7 @@
 
   var loadSocketIO = function(buzzes){
     var socket = io.connect(window.CONFIG.URL_SOCKET_IO);
-    socket.on('burburinho', addBuzzToStore);
+    socket.on('buzz', addBuzzToStore);
   };
 
   var loadEvents = function(){
