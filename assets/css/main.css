@@ -66,9 +66,9 @@
   background: #000; }
 
 .timeline-content.quote img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+  width: 100px;
+  height: auto;
+  border-radius: 0%;
   float: left;
   margin-right: 20px;
   box-shadow: 2px 1px 1px black; }
