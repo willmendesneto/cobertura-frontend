@@ -18,7 +18,7 @@
 
       return '<div class="logos">'+
         '<div class="social-small">'+
-          '<a target="_blank" href="//www.twitter.com/share?url=' + CONFIG.URL_COBERTURA + '&via=Brasil_de_Fato&related=Brasil_de_Fato&text=' + document.title + '" >' +
+          '<a target="_blank" href="//www.twitter.com/share?url=' + CONFIG.URL_COBERTURA + '&via=Brasil_de_Fato&related=Brasil_de_Fato&text=' + encodeURI(strip(data.content)) + '" >' +
             '<i class="fa fa-twitter"></i>'+
           '</a>' +
         '</div>'+
