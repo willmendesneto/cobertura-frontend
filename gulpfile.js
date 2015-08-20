@@ -15,6 +15,7 @@ var gulp          = require('gulp'),
     karma         = require('karma').server,
     path          = require('path'),
     childProcess  = require('child_process'),
+    complexity    = require('gulp-complexity'),
     karmaConf     = require('./karma.conf.js');
 
 var CONFIG = {
@@ -61,6 +62,14 @@ gulp.task('browser-sync', ['jekyll-build'], function() {
         },
         port: 4000
     });
+});
+
+gulp.task('complexity', function(){
+    return gulp.src('src/js/components/**/*.js')
+        .pipe(complexity({
+          halstead: 29,
+          cyclomatic: 6
+        }));
 });
 
 gulp.task('coverage', ['test'], function() {
