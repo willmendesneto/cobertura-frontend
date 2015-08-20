@@ -42,26 +42,26 @@
       return element.offset().top > $(window).scrollTop()+$(window).height() * defaultOffset;
     },
 
-    hideBlocksOutsideViewport: function(ofset) {
+    hideBlocksOutsideViewport: function() {
       var self;
       var blocks = TimelineBlocks.getTimelineBlocks();
 
       blocks.each(function(){
         self = $(this);
 
-        ( TimelineBlocks.elementIsNotVisibleOnViewport(self, ofset) ) &&
+        ( TimelineBlocks.elementIsNotVisibleOnViewport(self) ) &&
           self.find('.timeline-img, .timeline-content').addClass('is-hidden');
       });
     },
 
-    showBlocksInViewport: function(ofset) {
+    showBlocksInViewport: function() {
       var self;
       var blocks = TimelineBlocks.getTimelineBlocks();
 
       blocks.each(function(){
         self = $(this);
 
-        ( TimelineBlocks.elementIsVisibleOnViewport(self, ofset) &&
+        ( TimelineBlocks.elementIsVisibleOnViewport(self) &&
         self.find('.timeline-img').hasClass('is-hidden') ) &&
         self.find('.timeline-img, .timeline-content')
           .removeClass('is-hidden')
