@@ -63,6 +63,15 @@ gulp.task('browser-sync', ['jekyll-build'], function() {
     });
 });
 
+gulp.task('coverage', ['test'], function() {
+    browserSync.init({
+        server: {
+        baseDir: 'coverage/PhantomJS 1.9.8 (Mac OS X 0.0.0)'
+        },
+        port: 4000
+    });
+});
+
 gulp.task('sass', function () {
   gulp.src('src/sass/main.scss')
     .pipe(plumber())
