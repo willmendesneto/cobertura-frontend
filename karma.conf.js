@@ -11,6 +11,7 @@ module.exports = {
     // list of files / patterns to load in the browser
     files: [
       'test/cdn-libs/jquery.min.js',
+      'node_modules/jasmine-jquery/lib/jasmine-jquery.js',
       'test/cdn-libs/jquery.magnific-popup.min.js',
       'test/cdn-libs/galleria.min.js',
       'src/js/packages/*.js',

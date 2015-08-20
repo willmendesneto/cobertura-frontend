@@ -112,7 +112,6 @@
       store = window.TimeLineStore;
       blocks = window.TimelineBlocks;
 
-
       blocks.hideBlocksOutsideViewport();
 
       if(!!offline){
