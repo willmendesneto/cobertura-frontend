@@ -7,19 +7,20 @@
             '//localhost:5000';
   }
 
-  var offline = window.offline || false;
+  function checkUrlBufferInfoWhenAppIsOffline(){
+    var offline = window.offline || false;
+    return !!offline ?
+            '/assets/json/'+offline.data :
+            getSocketIOUrl()+'/api/buzzes';
+  }
 
   var CONFIG = {
     FACEBOOK_ID: 1500652936893411,
     URL_COBERTURA: 'http://cobertura.brasildefato.com.br',
     URL_SOCIAL_SHARE_IMAGE: 'http://cobertura.brasildefato.com.br/assets/img/logo.jpg',
-    URL_BUFFER_INFO: getSocketIOUrl()+'/api/buzzes',
+    URL_BUFFER_INFO: checkUrlBufferInfoWhenAppIsOffline(),
     URL_SOCKET_IO: getSocketIOUrl()
   };
-
-  if(!!offline){
-    CONFIG.URL_BUFFER_INFO = '/assets/json/'+offline.data;
-  }
 
   if (typeof define !== 'undefined' && define.amd) {
     // AMD. Register as an anonymous module.
