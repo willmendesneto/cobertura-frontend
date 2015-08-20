@@ -12,6 +12,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
     <meta property="og:image" content="{{ site.facebook_image }}">
+    <meta property="og:image:url" content="{{ site.facebook_image }}">
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:description" content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
     <meta property="og:site_name" content="{{ site.title }}">
