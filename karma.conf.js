@@ -11,6 +11,7 @@ module.exports = {
     // list of files / patterns to load in the browser
     files: [
       'test/cdn-libs/jquery.min.js',
+      'node_modules/jasmine-jquery/lib/jasmine-jquery.js',
       'test/cdn-libs/jquery.magnific-popup.min.js',
       'test/cdn-libs/galleria.min.js',
       'src/js/packages/*.js',
@@ -23,7 +24,12 @@ module.exports = {
     // list of files to exclude
     exclude: [
     ],
-
+    preprocessors: {
+      // source files, that you wanna generate coverage for
+      // do not include tests or libraries
+      // (these files will be instrumented by Istanbul)
+      'src/js/components/**/*.js': ['coverage']
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'

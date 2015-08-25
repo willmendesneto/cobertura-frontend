@@ -18,12 +18,12 @@
 
       return '<div class="logos">'+
         '<div class="social-small">'+
-          '<a target="_blank" href="//www.twitter.com/share?url=' + CONFIG.URL_COBERTURA + '&via=Brasil_de_Fato&related=Brasil_de_Fato&text=' + encodeURI(strip(data.content)) + '" >' +
+          '<a target="_blank" href="//www.twitter.com/share?url=' + CONFIG.URL_COBERTURA + '&via=Brasil_de_Fato&related=Brasil_de_Fato&text=' + encodeURIComponent(strip(data.content)) + '" >' +
             '<i class="fa fa-twitter"></i>'+
           '</a>' +
         '</div>'+
         '<div class="social-small">' +
-          '<a href="//www.facebook.com/dialog/feed?app_id=' + CONFIG.FACEBOOK_ID + '&display=popup&href=' + CONFIG.URL_COBERTURA + '&redirect_uri=' + CONFIG.URL_COBERTURA + '&picture=' + imageToShare + '&name=' + document.title + '&description=' + encodeURI(strip(data.content)) + '&link=' + CONFIG.URL_COBERTURA + '" target="_blank">' +
+          '<a href="//www.facebook.com/dialog/feed?app_id=' + CONFIG.FACEBOOK_ID + '&display=popup&href=' + CONFIG.URL_COBERTURA + '&redirect_uri=' + CONFIG.URL_COBERTURA + '&picture=' + imageToShare + '&name=' + document.title + '&description=' + encodeURIComponent(strip(data.content)) + '&link=' + CONFIG.URL_COBERTURA + '" target="_blank">' +
             '<i class="fa fa-facebook"></i>' +
           '</a>' +
         '</div>' +
