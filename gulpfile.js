@@ -64,6 +64,16 @@ gulp.task('browser-sync', ['jekyll-build'], function() {
     });
 });
 
+gulp.task('e2e-server', function(){
+  browserSync.init({
+      server: {
+      baseDir: '_site'
+      },
+      open: false,
+      port: 4000
+  });
+});
+
 gulp.task('complexity', function(){
     return gulp.src('src/js/components/**/*.js')
         .pipe(complexity({

@@ -62,3 +62,7 @@ exports.config = {
     defaultTimeoutInterval: 30000
   }
 };
+
+if (process.env.SNAP_CI) {
+  exports.config.chromeDriver = '/usr/local/bin/chromedriver';
+}
