@@ -1,6 +1,7 @@
 var gulp          = require('gulp'),
     protractor    = require('gulp-protractor').protractor
     plumber       = require('gulp-plumber'),
+    htmlmin       = require('gulp-htmlmin'),
     browserSync   = require('browser-sync').create(),
     uglify        = require('gulp-uglify'),
     concat        = require('gulp-concat'),
@@ -43,6 +44,12 @@ gulp.task('jekyll-build', function (done) {
      }else {
         return cp.spawn('jekyll', ['build'], {stdio: 'inherit'}).on('close', done);
     }
+});
+
+gulp.task('minify-html', function() {
+  return gulp.src('_site/**/*.html')
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest('_site'));
 });
 
 /**
@@ -173,7 +180,7 @@ gulp.task('watch', function () {
     gulp.watch('test/spec/**/*.js', ['test']);
     gulp.watch('src/img/**/*.{jpg,png,gif}', ['imagemin']);
     gulp.watch('src/sass/**/*.scss', ['sass']);
-    gulp.watch(['*.html','index.html', '_includes/*.html', '_layouts/*.html', '_posts/*', '**/*.md', '**/*.html'], ['jekyll-rebuild']);
+    gulp.watch(['*.html','index.html', '_includes/*.html', '_layouts/*.html', '_posts/*', '**/*.md', '**/*.html'], ['jekyll-rebuild', 'minify-html']);
 });
 
 gulp.task('deploy', function() {
@@ -187,4 +194,4 @@ gulp.task('build', ['js', 'json',  'sass']);
  * Default task, running just `gulp` will compile the sass,
  * compile the jekyll site, launch BrowserSync & watch files.
  */
-gulp.task('default', ['js', 'json', 'sass', 'browser-sync', 'watch']);
+gulp.task('default', ['js', 'json', 'sass', 'browser-sync', 'minify-html', 'watch']);

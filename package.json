@@ -17,6 +17,7 @@
     "gulp-complexity": "^0.3.0",
     "gulp-concat": "^2.6.0",
     "gulp-gh-pages": "^0.5.2",
+    "gulp-htmlmin": "^1.1.4",
     "gulp-imagemin": "^2.3.0",
     "gulp-jshint": "^1.9.2",
     "gulp-plumber": "^1.0.1",
