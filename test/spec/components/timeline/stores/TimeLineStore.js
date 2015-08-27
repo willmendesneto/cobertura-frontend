@@ -6,8 +6,9 @@ describe('TimelineStore.js', function () {
 
   beforeEach(function () {
     store = window.TimeLineStore;
-    data = [{ title:1 }, {title:2}, { title:3 }, {title:4}, { title:5 }, {title:6}, { title:7 }, {title:8}, { title:9 }, {title:10}, {title:11}, { title:10 },
-      {title:11}, {title:12}, { title:13 }, {title:14}];
+    data = [{ title:1 , timestamp: 1}, {title:2, timestamp: 2}, { title:3 , timestamp: 3}, {title:4, timestamp: 4}, { title:5 , timestamp: 5}, {title:6, timestamp: 6}, { title:7 , timestamp: 7},
+      {title:8, timestamp: 8}, { title:9 , timestamp: 9}, {title:10, timestamp: 10}, {title:11, timestamp: 11},
+      {title:12, timestamp: 12}, { title:13 , timestamp: 13}, {title:14, timestamp: 14}];
 
   });
 
@@ -38,6 +39,18 @@ describe('TimelineStore.js', function () {
     }
 
     expect(currentLength).toBe(dataStore.length);
+  });
+
+  it('#update', function () {
+    store.setData(data);
+
+    var newData = data[0];
+    newData.author = 'Test';
+
+    store.update(newData);
+
+    var localStore = store.getLocalOldestInformations();
+    expect(newData.author).toBe(localStore[0].author);
   });
 
   describe('getLocalOldestInformations',function(){

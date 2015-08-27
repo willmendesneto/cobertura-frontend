@@ -42,6 +42,17 @@
       _data.splice(index, 1);
     },
 
+    update: function(item) {
+      var oldData = _data;
+
+      _data = oldData.map( function (element) {
+        if(element.timestamp === item.timestamp) {
+          element = item;
+        }
+        return element;
+      });
+    },
+
     getLocalOldestInformations: function() {
       return startFrom();
     },
