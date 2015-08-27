@@ -30,4 +30,6 @@ function install_gems {
 }
 
 install_gems
+gulp imagemin
+gulp build
 heroku_deploy
