@@ -22,10 +22,10 @@
       if(!!newerContent) {
         $('#timeline').prepend(newElement);
         showButtonNewContent();
-      } else if ( !$('.timeline-block:last-child')[0] ) {
+      } else if ( !$('.timeline-block').last()[0] ) {
         $('.button-load-more').before(newElement);
       } else {
-        $('.timeline-block:last-child').after(newElement);
+        $('.timeline-block').last().after(newElement);
       }
     },
 

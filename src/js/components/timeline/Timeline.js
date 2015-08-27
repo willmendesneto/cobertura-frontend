@@ -6,7 +6,7 @@
 
 
   var lastElementIsVisible = function(){
-    var $lastTimelineItem = $('.timeline-block:last-child');
+    var $lastTimelineItem = $('.timeline-block').last();
     if ($lastTimelineItem.size() > 0){
       return blocks.elementIsVisibleOnViewport($lastTimelineItem);
     }
@@ -19,7 +19,6 @@
     if (!lastElementIsVisible()) {
       return;
     }
-
     var buzzes = store.getLocalOldestInformations();
 
     if (buzzes.length === 0) {
