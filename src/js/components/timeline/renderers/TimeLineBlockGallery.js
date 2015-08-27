@@ -13,7 +13,7 @@
       return '<img src="' + getOptmizedImageUrl(item.url) + '" alt="' + item.description + '"/>';
     });
 
-    return '<div class="timeline-block">' +
+    return '<div class="timeline-block" data-uuid="' + data._id + '">' +
       '<figure class="timeline-img">' +
           '<i class="fa fa-picture-o"></i>' +
       '</figure>' +

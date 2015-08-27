@@ -16,8 +16,13 @@
   TimelineBlocks = {
 
     timelineBlocks: null,
+
+    getTimelineOutputHTML: function(data) {
+      return getTimelineRenderer(data.type).render( data );
+    },
+
     render: function(data, newerContent) {
-      var newElement = getTimelineRenderer(data.type).render( data );
+      var newElement = TimelineBlocks.getTimelineOutputHTML(data);
 
       if(!!newerContent) {
         $('#timeline').prepend(newElement);

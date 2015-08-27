@@ -65,6 +65,13 @@
     triggerBuzzEvent(buzz);
   };
 
+  var renderUpdatedBuzzInScreen = function(buzz, isANewElement) {
+    var buzzHTML = blocks.getTimelineOutputHTML(buzz);
+    $('.timeline-block[data-uuid="' + buzz._id + '"]')
+              .html($(buzzHTML).html())
+    triggerBuzzEvent(buzz);
+  };
+
   var addBuzzToStore = function(data){
     var buzz = data.message;
     store.remove(buzz);
@@ -73,6 +80,12 @@
     renderBuzzInScreen(buzz, true);
 
     blocks.hideBlocksOutsideViewport();
+  };
+
+  var updateBuzzInTimeline = function(data) {
+    var buzz = data.message;
+    store.update(buzz);
+    renderUpdatedBuzzInScreen(buzz, true);
   };
 
   var loadBuzzesFromServer = function(buzzes){
@@ -90,6 +103,7 @@
   var loadSocketIO = function(buzzes){
     var socket = io.connect(window.CONFIG.URL_SOCKET_IO);
     socket.on('buzz', addBuzzToStore);
+    socket.on('updated:buzz', updateBuzzInTimeline);
   };
 
   var loadEvents = function(){

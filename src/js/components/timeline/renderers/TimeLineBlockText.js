@@ -9,7 +9,7 @@
     var formattedDate = getFormattedDate(data.timestamp);
     var formattedDateHour = getFormattedHourAndMinutes(data.timestamp);
 
-    return '<div class="timeline-block">' +
+    return '<div class="timeline-block" data-uuid="' + data._id + '">' +
     '  <figure class="timeline-img">' +
     '    <i class="fa fa-align-justify"></i>' +
     '  </figure>' +
