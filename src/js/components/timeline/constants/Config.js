@@ -44,6 +44,13 @@
   CONFIG.URL_BUFFER_INFO = checkUrlBufferInfoWhenAppIsOffline();
 
 
+  CONFIG.getUrlBufferInfo = function() {
+    var offline = window.offline || false;
+    return !!offline ?
+            '/assets/json/'+offline.data :
+            CONFIG.URL_SOCKET_IO + '/api/buzzes';
+  }
+
   if (typeof define !== 'undefined' && define.amd) {
     // AMD. Register as an anonymous module.
     define(function() {

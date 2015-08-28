@@ -62,7 +62,7 @@
     },
 
     getBufferInformations: function() {
-      return $.when($.getJSON(CONFIG.URL_BUFFER_INFO));
+      return $.when($.getJSON(CONFIG.getUrlBufferInfo()));
     }
 
   };
