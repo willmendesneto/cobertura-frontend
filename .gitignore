@@ -8,3 +8,5 @@ assets/
 .publish/
 coverage
 .DS_Store
+.bundle
+Gemfile.lock
