@@ -36,7 +36,7 @@
     var origin = window.location.origin; 
     if(origin.indexOf('localhost')) !== -1 {
         return CONFIG_LOCAL;
-    } else if(origin.indexOf('test') !== -1) {
+    } else if(origin.indexOf('test')) !== -1) {
         return CONFIG_STAGING;
     } else {
         return CONFIG_PRODUCTION;
