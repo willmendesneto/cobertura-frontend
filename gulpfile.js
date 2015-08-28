@@ -1,5 +1,9 @@
 var gulp          = require('gulp'),
-    protractor    = require('gulp-protractor').protractor
+    protractor    = require('gulp-protractor').protractor,
+    gutil         = require('gulp-util'),
+    jshint        = require('gulp-jshint'),
+    stylish       = require('jshint-stylish'),
+    map           = require('map-stream')
     plumber       = require('gulp-plumber'),
     htmlmin       = require('gulp-htmlmin'),
     browserSync   = require('browser-sync').create(),
@@ -27,12 +31,51 @@ var messages = {
 	jekyllBuild: '<span style="color: grey">Running:</span> $ jekyll build'
 };
 
+var exitCode = 0;
+var totalLintErrors = 0;
+
+function lintOnEnd() {
+  var errString = totalLintErrors + '';
+  if (exitCode) {
+    console.log(gutil.colors.magenta(errString), 'errors\n');
+    gutil.beep();
+  }
+}
+
 function getProtractorBinary(binaryName){
     var winExt = /^win/.test(process.platform)? '.cmd' : '';
     var pkgPath = require.resolve('protractor');
     var protractorDir = path.resolve(path.join(path.dirname(pkgPath), '..', 'bin'));
     return path.join(protractorDir, '/'+binaryName+winExt);
 }
+
+
+gulp.task('jshint', function() {
+  return gulp.src('./src/js/**/*.js')
+    .pipe(jshint('.jshintrc'))
+    .pipe(jshint.reporter(stylish))
+    .pipe(map(function (file, cb) {
+      if (!file.jshint.success) {
+        totalLintErrors += file.jshint.results.length;
+        exitCode = 1;
+      }
+      cb(null, file);
+    }))
+    .on('end', function () {
+      lintOnEnd();
+      if (exitCode) {
+        process.emit('exit');
+      }
+    });
+});
+
+process.on('exit', function () {
+  process.nextTick(function () {
+    var msg = 'gulp ' + gulp.seq + ' failed';
+    console.log(gutil.colors.red(msg));
+    process.exit(exitCode);
+  });
+});
 
 /**
  * Build the Jekyll Site
