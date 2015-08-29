@@ -21,6 +21,7 @@ var gulp          = require('gulp'),
     path          = require('path'),
     childProcess  = require('child_process'),
     complexity    = require('gulp-complexity'),
+    connect       = require('gulp-connect'),
     karmaConf     = require('./karma.conf.js');
 
 var CONFIG = {
@@ -114,16 +115,6 @@ gulp.task('browser-sync', ['jekyll-build'], function() {
     });
 });
 
-gulp.task('e2e-server', function(){
-  browserSync.init({
-      server: {
-      baseDir: '_site'
-      },
-      open: false,
-      port: 4000
-  });
-});
-
 gulp.task('complexity', function(){
     return gulp.src('src/js/components/**/*.js')
         .pipe(complexity({
@@ -207,11 +198,30 @@ gulp.task('protractor-install', function(done){
     }).once('close', done);
 });
 
-gulp.task('protractor-run', function (done) {
-    childProcess.spawn(getProtractorBinary('protractor'), [CONFIG.PROTRACTOR_FILE], {
+gulp.task('protractor-start', function(done){
+    childProcess.spawn(getProtractorBinary('webdriver-manager'), ['start'], {
         stdio: 'inherit'
     }).once('close', done);
 });
+
+gulp.task('protractor-run', function (done) {
+    childProcess.exec('npm run e2e', function (error, stdout, stderr) {
+        if(error === null) {
+            process.exit(1);
+            done();
+        }
+    });
+});
+
+gulp.task('connect', function() {
+  connect.server({
+    root: '_site',
+    port: 4000,
+    livereload: false
+  });
+});
+
+gulp.task('e2e', ['connect', 'protractor-start', 'protractor-run'])
 
 /**
  * Watch stylus files for changes & recompile
