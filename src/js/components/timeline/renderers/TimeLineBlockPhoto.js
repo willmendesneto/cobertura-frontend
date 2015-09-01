@@ -8,7 +8,8 @@
   TimeLineBlockPhoto.render = function(data) {
     var formattedDate = getFormattedDate(data.timestamp);
     var formattedDateHour = getFormattedHourAndMinutes(data.timestamp);
-
+    data.content = !!data.content || '';
+    
     return '<div class="timeline-block" data-uuid="' + data._id + '">' +
       '<figure class="timeline-img">' +
         '<i class="fa fa-camera-retro"></i>' +
