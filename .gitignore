@@ -9,4 +9,4 @@ assets/
 coverage
 .DS_Store
 .bundle
-Gemfile.lock
+npm-debug*
