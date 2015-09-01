@@ -206,10 +206,12 @@ gulp.task('protractor-start', function(done){
 
 gulp.task('protractor-run', function (done) {
     childProcess.exec('npm run e2e', function (error, stdout, stderr) {
-        if(error === null) {
-            process.exit(1);
-            done();
-        }
+      if (error !== null) {
+        console.log(gutil.colors.magenta('\nError in "protractor-run" task\n', error));
+        gutil.beep();
+      }
+      process.exit(1);
+      done();
     });
 });
 
