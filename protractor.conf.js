@@ -1,3 +1,8 @@
+var USER_AGENT = {
+  DESKTOP: 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36',
+  MOBILE: 'Mozilla/5.0 (iPhone; CPU iPhone OS 7_0 like Mac OS X; en-us) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/9537.53'
+};
+
 // An example configuration file.
 exports.config = {
 
@@ -47,10 +52,33 @@ exports.config = {
   // Options to be passed to Jasmine-node.
   jasmineNodeOpts: {
     showColors: true,
+    includeStackTrace: true,
     defaultTimeoutInterval: 30000
   }
 };
 
-if (process.env.SNAP_CI) {
-  exports.config.chromeDriver = '/usr/local/bin/chromedriver';
+if (!process.env.SNAP_CI) {
+
+  exports.config['phantomjs.binary.path'] = require('phantomjs').path;
+
+  exports.config.multiCapabilities = [
+    // desktop
+    {
+      'browserName': 'phantomjs',
+      'phantomjs.binary.path': require('phantomjs').path,
+      'phantomjs.page.settings.userAgent': USER_AGENT.DESKTOP,
+      specs: [
+        'test/e2e/desktop/**/*Spec.js'
+      ]
+    },
+    // mobile
+    {
+      'browserName': 'phantomjs',
+      'phantomjs.binary.path': require('phantomjs').path,
+      'phantomjs.page.settings.userAgent': USER_AGENT.MOBILE,
+      specs: [
+        'test/e2e/mobile/**/*Spec.js'
+      ]
+    }
+  ];
 }
