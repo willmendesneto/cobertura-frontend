@@ -3,7 +3,7 @@
   "main": "gulpfile.js",
   "scripts": {
     "test": "./node_modules/.bin/gulp test",
-    "e2e": "gulp connect & ./node_modules/.bin/protractor protractor.conf.js",
+    "e2e": "./node_modules/.bin/protractor protractor.conf.js",
     "updateWebBrowser": "./node_modules/protractor/bin/webdriver-manager update",
     "startWebBrowser": "./node_modules/protractor/bin/webdriver-manager start"
   },

@@ -209,6 +209,8 @@ gulp.task('protractor-run', function (done) {
       if (error !== null) {
         console.log(gutil.colors.magenta('\nError in "protractor-run" task\n', error));
         gutil.beep();
+      } else {
+        console.log(gutil.colors.green('\nTask "protractor-run": ✔\n'));
       }
       process.exit(1);
       done();
@@ -223,7 +225,7 @@ gulp.task('connect', function() {
   });
 });
 
-gulp.task('e2e', ['connect', 'protractor-start', 'protractor-run'])
+gulp.task('e2e', ['connect', 'protractor-run']);
 
 /**
  * Watch stylus files for changes & recompile
