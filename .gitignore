@@ -10,3 +10,4 @@ coverage
 .DS_Store
 .bundle
 npm-debug*
+phantomjsdriver.log

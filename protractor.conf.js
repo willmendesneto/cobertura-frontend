@@ -57,7 +57,7 @@ exports.config = {
   }
 };
 
-if (!process.env.SNAP_CI) {
+if (process.env.SNAP_CI) {
 
   exports.config['phantomjs.binary.path'] = require('phantomjs').path;
 
