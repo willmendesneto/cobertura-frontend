@@ -43,7 +43,6 @@
   var CONFIG = getConfiguration();
   CONFIG.URL_BUFFER_INFO = checkUrlBufferInfoWhenAppIsOffline();
 
-
   CONFIG.getUrlBufferInfo = function() {
     var offline = window.offline || false;
     return !!offline ?
