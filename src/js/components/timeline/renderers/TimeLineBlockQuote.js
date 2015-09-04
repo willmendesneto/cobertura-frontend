@@ -8,6 +8,9 @@
   TimeLineBlockQuote.render = function(data) {
     var formattedDate = getFormattedDate(data.timestamp);
     var formattedDateHour = getFormattedHourAndMinutes(data.timestamp);
+    if( typeof data.content === 'undefined'){
+      data.content = '';
+    };
 
     return '<div class="timeline-block" data-uuid="' + data._id + '">' +
       '<figure class="timeline-img">' +
