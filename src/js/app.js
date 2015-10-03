@@ -28,7 +28,7 @@ $(document).ready(function() {
 
     if (buzz.type === 'photo') {
 
-      var imageHTML = '<img class="highlight-photo" src="' + getOptmizedImageUrl(buzz.url) + '" alt="' + buzz.content + '" width="90" height="auto">';
+      var imageHTML = '<img class="highlight-photo" src="' + getOptmizedImageUrl(buzz.url) + '" alt="' + strip(buzz.content) + '" width="90" height="auto">';
       if (!$('.photo[data-uuid="' + buzz._id + '"]')[0]) {
         $('.choose-photos').html(
           $('.choose-photos').html() +
