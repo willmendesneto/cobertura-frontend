@@ -3,6 +3,6 @@ gulp build
 bundle exec jekyll build
 cd _site
 rm index.html
-cp cobertura-do-ato-03-de-outubro/index.html .
+cp cobertura-da-feira-da-reforma-agraria/index.html .
 cd ..
 gulp deploy
