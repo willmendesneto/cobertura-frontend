@@ -22,7 +22,8 @@ var gulp          = require('gulp'),
     childProcess  = require('child_process'),
     complexity    = require('gulp-complexity'),
     connect       = require('gulp-connect'),
-    karmaConf     = require('./karma.conf.js');
+    karmaConf     = require('./karma.conf.js'),
+    coveralls = require('gulp-coveralls');
 
 var CONFIG = {
   PROTRACTOR_FILE: 'protractor.conf.js'
@@ -123,10 +124,10 @@ gulp.task('complexity', function(){
         }));
 });
 
-gulp.task('coverage', ['test'], function() {
+gulp.task('coverage', ['badge'], function() {
     browserSync.init({
         server: {
-        baseDir: 'coverage/PhantomJS 1.9.8 (Mac OS X 0.0.0)'
+        baseDir: 'coverage/report-html'
         },
         port: 4000
     });
@@ -227,6 +228,11 @@ gulp.task('connect', function() {
 
 gulp.task('e2e', ['connect', 'protractor-run']);
 
+gulp.task('badge', ['test'], function(){
+  gulp.src('./coverage/report-lcov/lcov.info')
+    .pipe(coveralls());
+});
+
 /**
  * Watch stylus files for changes & recompile
  * Watch html/md files, run jekyll & reload BrowserSync
@@ -245,7 +251,7 @@ gulp.task('deploy', function() {
   .pipe(ghPages());
 });
 
-gulp.task('build', ['js', 'json',  'sass']);
+gulp.task('build', ['badge', 'js', 'json',  'sass']);
 
 /**
  * Default task, running just `gulp` will compile the sass,
