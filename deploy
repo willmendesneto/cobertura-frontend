@@ -1,8 +1,12 @@
+#!/bin/bash
+
+cobertura_home=$1
+
 gulp imagemin
 gulp build
 bundle exec jekyll build
 cd _site
 rm index.html
-cp cobertura-da-feira-da-reforma-agraria/index.html .
+cp $cobertura_home/index.html .
 cd ..
 gulp deploy
