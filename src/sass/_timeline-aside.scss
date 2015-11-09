@@ -45,10 +45,10 @@ aside {
     height: 45vh;
     overflow-y: auto;
     p {
-      font-style: italic;
+      margin-left: 20px;
       font-weight: 200;
-      text-align:  center;
-      font-size: 0.9em;
+      text-align: left;
+      font-size: 1em;
     }
   }
 
@@ -97,13 +97,17 @@ aside {
 .title {
     margin-top: 0;
     text-align: center;
+
+
    &-primary{
-      color: #000;
-      font-size: 1.5em;
+      line-height: 1.1em;
+      padding-top: 20px;
+
    }
     &-secundary{
       border-bottom: 1px solid #dddddd;
       color: darken(#891A1C, 1%);
+      font-size: 2em;
     }
 }
 
