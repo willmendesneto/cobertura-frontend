@@ -1,7 +1,7 @@
 ---
 layout: timeline
 title:  "Tragédia em Minas Gerais: as consequências da mineração"
-description_one: "O rompimento de duas barragens no distrito de Bento Rodrigues, em Mariana, na Região Central de Minas Gerais, na quinta-feira passada (5), deixou dezenas de pessoas feridas e desabrigadas. Há onze mortes confirmadas pelas autoridades: sete pessoas foram identificadas e quatro ainda aguardam identificação."
-description_two: "As barragens de Fundão e Santarém eram de responsabilidade da empresa Samarco, que tem 50% de suas ações nas mãos da Vale, uma das maiores mineradoras do mundo. A outra metade pertence à australiana BHP Billiton.</p><p>A lama de rejeitos das barragens já chegou ao Rio Doce, o que provocou o corte no abastecimento de água em algumas cidades. Especialistas também apuram sobre os riscos à saúde e ao meio ambiente do rejeito de minério de ferro liberado."
+description_one: "O rompimento de duas barragens no distrito de Bento Rodrigues, em Mariana, na Região Central de Minas Gerais, deixou dezenas de pessoas feridas e desabrigadas, na quinta-feira (5).</p><p>As barragens de Fundão e Santarém eram de responsabilidade da empresa Samarco, que tem 50% de suas ações nas mãos da Vale, uma das maiores mineradoras do mundo. A outra metade pertence à australiana BHP Billiton."
+description_two: "Segundo o último boletim divulgado pela Prefeitura de Mariana, 19 pessoas estão desaparecidas e nove mortes foram confirmadas, sendo que três corpos ainda não foram identificados.</p><p>Passados mais de vinte dias da tragédia, uma das maiores preocupações é o impacto ao ecossistema causado pela lama de rejeito que, além de Minas Gerais, atingiu os estados do Espírito Santo e Bahia.</p><p>Uma equipe do Brasil de Fato está no local para acompanhar as consequências da tragédia. Acompanhe a cobertura."
 offline: false
 ---
