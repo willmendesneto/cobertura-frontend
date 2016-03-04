@@ -49,10 +49,6 @@
   font-size: 0.8em;
   color: #891A1C; }
 
-.timeline-content.text p::first-letter {
-  font-size: 200%;
-  font-weight: bold; }
-
 .timeline-content.video iframe {
   width: 100%;
   min-height: auto; }
@@ -129,7 +125,8 @@ aside {
     margin-top: 10px; }
   @media only screen and (min-width: 768px) {
     aside .know-more {
-      height: auto; }
+      overflow-y: auto;
+      height: 45vh; }
     aside section + section {
       height: auto; } }
   aside .choose-photos {
