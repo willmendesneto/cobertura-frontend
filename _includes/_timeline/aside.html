@@ -9,12 +9,11 @@
         <h1 class="title title-primary">
           {{ page.title }}
         </h1>
-        <p>
-          {{ page.description_one }}
-        </p>
-        <p>
-          {{ page.description_two }}
-        </p>
+        {% for description in page.descriptions %}
+          <p>
+          {{ description }}
+          </p>
+        {% endfor %}
     </section>
     <section class="choose-photos">
       <header>

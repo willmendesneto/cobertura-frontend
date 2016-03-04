@@ -61,7 +61,8 @@ aside {
   @include media-query(M) {
 
     .know-more {
-      height: auto;
+      overflow-y: auto;
+      height: 45vh;
     }
 
     section + section {
