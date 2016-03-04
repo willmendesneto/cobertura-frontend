@@ -26,7 +26,7 @@
     FACEBOOK_ID: 1500652936893411,
     URL_COBERTURA: 'http://cobertura.brasildefato.com.br',
     URL_SOCIAL_SHARE_IMAGE: 'http://cobertura.brasildefato.com.br/assets/img/logo.jpg',
-    URL_SOCKET_IO: '//burburinho.herokuapp.com'
+    URL_SOCKET_IO: '//cpmidias-teste.brasildefato.com.br:5001'
   };
 
   function getConfiguration(){
