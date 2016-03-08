@@ -149,6 +149,8 @@ aside {
 .title {
   margin-top: 0;
   text-align: center; }
+  .title-subtitle {
+    font-size: 1em; }
   .title-primary {
     line-height: 1.1em;
     padding-top: 20px; }
