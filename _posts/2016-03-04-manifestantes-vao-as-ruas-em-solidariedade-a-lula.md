@@ -14,5 +14,6 @@ descriptions:
   - "Diversos atos em solidariedade a Lula estão previstos para ocorrer nesta sexta-feira em várias capitais, convocados por movimentos populares, sindicatos e organizações sociais.  Acompanhe a cobertura da nossa reportagem em tempo real."
 
   - "<i>Se espera varios actos en solidaridad con Lula que tendrá lugar el viernes en varias capitales, llamados por los movimientos populares, sindicatos y organizaciones sociales. Siga la cobertura de nuestros informes en tiempo real.</i>"
-offline: false
+offline: true
+data: "2016-03-04-manifestantes-vao-as-ruas-em-solidariedade-a-lula.json"
 ---
