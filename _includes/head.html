@@ -14,7 +14,7 @@
 
 
     <!-- Social: Facebook / Open Graph -->
-    <meta property="og:url" content="{{ site.url }}">
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
     <meta property="og:type" content="website" />
     <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
     <meta property="og:image" content="{{ site.facebook_image }}">
@@ -54,5 +54,5 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/assets/img/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="{{ site.baseurl }}/assets/img/icons/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ site.baseurl }}/assets/img/icons/favicon-16x16.png">
-    
+
 </head>
