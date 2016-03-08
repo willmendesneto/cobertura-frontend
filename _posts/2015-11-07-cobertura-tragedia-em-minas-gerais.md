@@ -12,5 +12,5 @@ descriptions:
 
   - "Uma equipe do Brasil de Fato está no local para acompanhar as consequências da tragédia. Acompanhe a cobertura."
 offline: true
-data: "2015-11-07.json"
+data: "2015-11-07-cobertura-tragedia-em-minas-gerais.json"
 ---

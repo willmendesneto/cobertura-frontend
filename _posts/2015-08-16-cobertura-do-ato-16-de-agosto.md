@@ -6,5 +6,5 @@ descriptions:
 
   - "Se nos atos anteriores desses grupos viam-se cartazes com ‘Impeachment Já’, Fora Dilma e PT’, ‘Chega de doutrinação marxista, basta de Paulo Freire’, ‘Intervenção militar Já’...  O que esperar dos protestos deste domingo?"
 offline: true
-data: "2015-08-16.json"
+data: "2015-08-16-cobertura-do-ato-16-de-agosto.json"
 ---

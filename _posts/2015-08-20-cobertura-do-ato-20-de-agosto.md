@@ -6,5 +6,5 @@ descriptions:
 
   - "A crítica contra o ajuste fiscal pede “que os ricos paguem pela crise”, como informa o manifesto que convoca os protestos, apontando, também, a taxação de grandes fortunas, dividendos e remessas de lucros e auditoria da dívida pública como alternativas para aliviar a economia."
 offline: true
-data: "2015-08-20.json"
+data: "2015-08-20-cobertura-do-ato-20-de-agosto.json"
 ---

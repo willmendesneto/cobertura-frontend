@@ -6,5 +6,5 @@ descriptions:
 
   - "No aniversário de 62 anos da Petrobras, a Frente realiza sua primeira mobilização de rua. Em defesa da estatal, a FBP critica especialmente o Projeto de Lei 131/2015, de autoria do senador José Serra (PSDB-SP) e que propõe a retirada da empresa enquanto operadora única do Pré-Sal."
 offline: true
-data: "2015-10-03.json"
+data: "2015-10-03-cobertura-do-ato-03-de-outubro.json"
 ---

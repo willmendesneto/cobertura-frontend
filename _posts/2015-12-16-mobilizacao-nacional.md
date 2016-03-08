@@ -8,5 +8,5 @@ descriptions:
 
   - "As mobilizações de rua ocorrem em mais de 15 cidades por todo o país. Entre os próprios movimentos se avalia que a articulação representa a maior unidade de forças progressistas desde a década de 1990."
 offline: true
-data: "2015-12-16.json"
+data: "2015-12-16-mobilizacao-nacional.json"
 ---
