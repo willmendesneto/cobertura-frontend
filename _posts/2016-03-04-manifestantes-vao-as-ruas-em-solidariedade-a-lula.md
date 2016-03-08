@@ -1,9 +1,8 @@
 ---
 layout: timeline
 title:  "Manifestantes vão às ruas em solidariedade a Lula"
+subtitle: "Los manifestantes salen a las calles en solidaridad con Lula"
 descriptions:
-  - "<b>Los manifestantes salen a las calles en solidaridad con Lula</b>"
-
   - "O ex-presidente Lula (PT) foi alvo de investigação da Polícia Federal, na manhã desta sexta-feira (4), como parte da Operação Lava Jato. Ele foi encaminhando, coercitivamente, para depor à PF, em São Paulo.</i>"
 
   - "<i>El ex presidente Lula (PT) fue víctima de una investigación por la Policía Federal en la mañana del viernes (4), como parte de la Operación ‘Lava Jato'. El fue llevado, coercitivamente, para dar testimonio en la PF, en São Paulo.</i>"
