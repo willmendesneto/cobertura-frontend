@@ -18,29 +18,35 @@
           </p>
         {% endfor %}
     </section>
-    <section class="choose-photos">
-      <header>
-        <h2 class="title title-secundary">Fotos</h2>
-      </header>
-    </section>
-    <section>
-        <h2 class="title title-secundary">Compartilhe!</h2>
-        <div class="social">
+    {% if page.media %}
+      <section>
+        {{ page.media }}
+      </section>
+    {% else %}
+      <section class="choose-photos">
+        <header>
+          <h2 class="title title-secundary">Fotos</h2>
+        </header>
+      </section>
+      <section>
+          <h2 class="title title-secundary">Compartilhe!</h2>
+          <div class="social">
 
-          <a href="//www.facebook.com/dialog/feed?app_id={{ site.facebook }}&display=popup&href={{ site.url | uri_escape }}&redirect_uri={{ site.url | uri_escape }}&picture={{ '/assets/img/logo.jpg' | prepend: site.url | uri_escape }}&name={{ page.title | xml_escape }}&description={{ page.description_one | truncate: 150 | xml_escape }}&link={{ site.url | uri_escape }}" target="_blank">
-            <i class="fa fa-facebook"></i>
-          </a>
+            <a href="//www.facebook.com/dialog/feed?app_id={{ site.facebook }}&display=popup&href={{ site.url | uri_escape }}&redirect_uri={{ site.url | uri_escape }}&picture={{ '/assets/img/logo.jpg' | prepend: site.url | uri_escape }}&name={{ page.title | xml_escape }}&description={{ page.description_one | truncate: 150 | xml_escape }}&link={{ site.url | uri_escape }}" target="_blank">
+              <i class="fa fa-facebook"></i>
+            </a>
 
 
-          <a target="_blank" href="//www.twitter.com/share?url={{ site.url| uri_escape }}&via=Brasil_de_Fato&related=Brasil_de_Fato&text={{ page.title | xml_escape }}" >
-            <i class="fa fa-twitter"></i>
-          </a>
-          <a target="_blank" href="mailto:?body={{page.description | xml_escape }}&subject={{page.title | xml_escape}}">
-            <i class="fa fa-envelope-o"></i>
-          </a>
-        </div>
-    </section>
-    <div class="push"></div>
+            <a target="_blank" href="//www.twitter.com/share?url={{ site.url| uri_escape }}&via=Brasil_de_Fato&related=Brasil_de_Fato&text={{ page.title | xml_escape }}" >
+              <i class="fa fa-twitter"></i>
+            </a>
+            <a target="_blank" href="mailto:?body={{page.description | xml_escape }}&subject={{page.title | xml_escape}}">
+              <i class="fa fa-envelope-o"></i>
+            </a>
+          </div>
+        </section>
+      <div class="push"></div>
+    {% endif %}
   </div>
   <footer>
     <p>Feito com <span class="love">&#9994;</span></p>

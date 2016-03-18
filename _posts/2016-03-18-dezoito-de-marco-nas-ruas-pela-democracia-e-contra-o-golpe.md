@@ -14,5 +14,7 @@ descriptions:
   - "Os direitos dos trabalhadores e mudanças nas políticas econômicas e sociais também são bandeiras levantadas pelos manifestantes."
 
   - "<i>Los derechos de los trabajadores y cambios en las políticas económicas y sociales también son banderas levantadas por los manifestantes.</i>"
+media:
+  - "<script type='text/javascript' src='http://twitcasting.tv/cutsaopaulo/embed/live-480-0'></script>"
 offline: false
 ---
