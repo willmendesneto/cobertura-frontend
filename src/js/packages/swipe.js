@@ -5,7 +5,7 @@ $(document).ready(function() {
     $(this).toggleClass('open');
   });
 
-  $('main > aside').hammer().on('swipe',function(){
+  $('main > aside').hammer({ cssProps: { userSelect: true } }).on('swipe',function(){
     $(this).toggleClass('open');
     $("[data-toggle]").toggleClass('open');
   });
