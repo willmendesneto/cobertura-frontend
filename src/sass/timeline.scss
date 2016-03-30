@@ -109,6 +109,14 @@
 	}
 }
 
+.embed_code {
+  display: none;
+
+  @include media-query(L) {
+    display: inline-block;
+  }
+}
+
 #timeline {
   width: 90%;
   float: left;
