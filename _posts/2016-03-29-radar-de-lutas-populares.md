@@ -9,8 +9,7 @@ descriptions:
 
   - "<br><i>Para embedar o Radar de Lutas Populares no seu site ou blog, utilize o código abaixo:</i>"
 
-  - '<div style="border:solid 1px; padding: 10px; background-color:lightgray; font-size: 0.8em;">&lt;iframe height=&quot;360&quot; src=&quot;http://radar.brasildefato.com.br&quot; width=&quot;640&quot;&gt;
-  &lt;/iframe&gt;</div>'
+  - '<div style="border:solid 1px; padding: 10px; background-color:lightgray; font-size: 0.8em;">&lt;iframe height=&quot;360&quot; src=&quot;http://radar.brasildefato.com.br&quot; width=&quot;640&quot;&gt;&lt;/iframe&gt;</div>'
 
 offline: false
 ---
