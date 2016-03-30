@@ -7,10 +7,10 @@ descriptions:
 
   - "Sua notícia no Radar: envie as informações (fotos, vídeos, notas, artigos etc) do coletivo, organização social ou movimento popular onde você atua para jornalismo@brasildefato.com.br ou para o nosso Whatsapp: (11) 98739-4232. Não se esqueça de indicar seu contato, local e data das fotos/vídeos."
 
-  - "Para embedar o Radar de Lutas Populares no seu site ou blog, utilize o código abaixo:"
+  - "<br><i>Para embedar o Radar de Lutas Populares no seu site ou blog, utilize o código abaixo:</i>"
 
-  - "<pre style='color:#000000;background:#ffffff;'><span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>iframe</span><span style='color:#274796; '> </span><span style='color:#074726; '>height</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>&quot;360&quot;</span><span style='color:#274796; '> </span><span style='color:#074726; '>src</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>&quot;http://radar.brasildefato.com.br&quot;</span><span style='color:#274796; '> </span><span style='color:#074726; '>width</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>&quot;640&quot;</span><span style='color:#a65700; '>></span><br><span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>iframe</span><span style='color:#a65700; '>></span>
-</pre>"
+  - '<div style="border:solid 1px; padding: 10px; background-color:lightgray; font-size: 0.8em;">&lt;iframe height=&quot;360&quot; src=&quot;http://radar.brasildefato.com.br&quot; width=&quot;640&quot;&gt;
+  &lt;/iframe&gt;</div>'
 
 offline: false
 ---
