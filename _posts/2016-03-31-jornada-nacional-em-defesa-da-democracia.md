@@ -12,7 +12,7 @@ descriptions:
   - "“No permitiremos que el proceso democrático de nuestros países sean interrumpidos. No aceptamos ningún derecho menos. Vamos a tomar las calles y nuestro grito hará eco en los cuatro rincones del país: no va a haber golpe!”, defienden los movimientos populares, sindicados, organizaciones políticas y militantes sociales que hacen parte de los frentes."
 
 media:
-  - '<iframe src="http://itv.netpoint.com.br/pt/iVideo.asp?id=aovivo&amp;velocidade=alta" name="frame" width="400px" height="225px" align="center" scrolling="No" frameborder="no"></iframe>'
+  - '<iframe width="400px" height="225px" src="https://www.youtube.com/embed/EVsengKKTBA" frameborder="0" allowfullscreen></iframe>'
 
 offline: false
 ---
