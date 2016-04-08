@@ -11,5 +11,6 @@ descriptions:
 
   - "“No permitiremos que el proceso democrático de nuestros países sean interrumpidos. No aceptamos ningún derecho menos. Vamos a tomar las calles y nuestro grito hará eco en los cuatro rincones del país: no va a haber golpe!”, defienden los movimientos populares, sindicados, organizaciones políticas y militantes sociales que hacen parte de los frentes."
 
-offline: false
+offline: true
+data: '2016-03-31-jornada-nacional-em-defesa-da-democracia.json'
 ---
